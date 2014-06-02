@@ -16,10 +16,22 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            new ipezbo\CustomerBundle\ipezboCustomerBundle(),
+            new ipezbo\BrandBundle\ipezboBrandBundle(),
+            new ipezbo\CategoryBundle\ipezboCategoryBundle(),
+            new ipezbo\NewsletterBundle\ipezboNewsletterBundle(),
+            new ipezbo\EventBundle\ipezboEventBundle(),
+            new ipezbo\ProductBundle\ipezboProductBundle(),
+            new ipezbo\GeneralSettingBundle\ipezboGeneralSettingBundle(),
+            new ipezbo\MailSettingBundle\ipezboMailSettingBundle(),
+            new ipezbo\SliderBundle\ipezboSliderBundle(),
+            new ipezbo\ParticipationBundle\ipezboParticipationBundle(),
+            new ipezbo\AlertBundle\ipezboAlertBundle(),
+            new ipezbo\UserBundle\ipezboUserBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
-            $bundles[] = new Acme\DemoBundle\AcmeDemoBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();

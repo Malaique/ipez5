@@ -1,0 +1,3 @@
+ipezbo_general_setting_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: ipezboGeneralSettingBundle:GeneralSetting:index }

@@ -67,3 +67,21 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+# FOSUserBundle Configuration
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: ipezbo\UserBundle\Entity\User
+    registration:
+        form:
+            type: ipezbo_userbundle_user_registration
+        confirmation:
+            from_email:
+                address: "contact@ipezbo.com"
+                sender_name: "Admin IPEZ"
+            enabled: true
+            template: FOSUserBundle:Registration:email.txt.twig
+    profile:
+        form:
+            type: ipez_userbundle_user_profile

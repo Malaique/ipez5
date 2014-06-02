@@ -1,0 +1,7 @@
+parameters:
+#    ipezbo_category.example.class: ipezbo\CategoryBundle\Example
+
+services:
+#    ipezbo_category.example:
+#        class: %ipezbo_category.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

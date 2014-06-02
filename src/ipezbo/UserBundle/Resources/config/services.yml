@@ -1,0 +1,9 @@
+parameters:
+#    ipezbo_user.example.class: ipezbo\UserBundle\Example
+
+services:
+    ipmotors_user.registration.form.type:
+        class: ipezbo\UserBundle\Form\UserType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: ipez_userbundle_user_registration }

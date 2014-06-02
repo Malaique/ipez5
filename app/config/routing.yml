@@ -1,0 +1,48 @@
+ipezbo_user:
+    resource: "@ipezboUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ipezbo_alert:
+    resource: "@ipezboAlertBundle/Resources/config/routing.yml"
+    prefix:   /alerts
+
+ipezbo_participation:
+    resource: "@ipezboParticipationBundle/Resources/config/routing.yml"
+    prefix:   /participations
+
+ipezbo_slider:
+    resource: "@ipezboSliderBundle/Resources/config/routing.yml"
+    prefix:   /slider
+
+ipezbo_mail_setting:
+    resource: "@ipezboMailSettingBundle/Resources/config/routing.yml"
+    prefix:   /mail-settings
+
+ipezbo_general_setting:
+    resource: "@ipezboGeneralSettingBundle/Resources/config/routing.yml"
+    prefix:   /general-settings
+
+ipezbo_product:
+    resource: "@ipezboProductBundle/Resources/config/routing.yml"
+    prefix:   /products
+
+ipezbo_event:
+    resource: "@ipezboEventBundle/Resources/config/routing.yml"
+    prefix:   /events
+
+ipezbo_newsletter:
+    resource: "@ipezboNewsletterBundle/Resources/config/routing.yml"
+    prefix:   /newsletters
+
+ipezbo_category:
+    resource: "@ipezboCategoryBundle/Resources/config/routing.yml"
+    prefix:   /categories
+
+ipezbo_brand:
+    resource: "@ipezboBrandBundle/Resources/config/routing.yml"
+    prefix:   /brands
+
+ipezbo_customer:
+    resource: "@ipezboCustomerBundle/Resources/config/routing.yml"
+    prefix:   /customers
+

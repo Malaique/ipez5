@@ -1,0 +1,7 @@
+parameters:
+#    ipezbo_brand.example.class: ipezbo\BrandBundle\Example
+
+services:
+#    ipezbo_brand.example:
+#        class: %ipezbo_brand.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

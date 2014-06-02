@@ -1,0 +1,7 @@
+parameters:
+#    ipezbo_slider.example.class: ipezbo\SliderBundle\Example
+
+services:
+#    ipezbo_slider.example:
+#        class: %ipezbo_slider.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

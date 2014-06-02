@@ -1,0 +1,7 @@
+parameters:
+#    ipezbo_newsletter.example.class: ipezbo\NewsletterBundle\Example
+
+services:
+#    ipezbo_newsletter.example:
+#        class: %ipezbo_newsletter.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

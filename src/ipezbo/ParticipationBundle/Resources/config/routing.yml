@@ -1,0 +1,3 @@
+ipezbo_participation_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: ipezboParticipationBundle:Participation:index }
