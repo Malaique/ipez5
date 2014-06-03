@@ -11,6 +11,10 @@
         'css/side-menu.css' %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
         {% endstylesheets %}
+        {% stylesheets filter='cssrewrite'
+        'css/main.css' %}
+            <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+        {% endstylesheets %}
     </head>
     <body>
         <div id="layout">
