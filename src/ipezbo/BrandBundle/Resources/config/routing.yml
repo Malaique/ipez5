@@ -11,3 +11,9 @@ ipezbo_brand_edit:
     defaults: { _controller: ipezboBrandBundle:Brand:edit }
     requirements:
         id : \d+
+
+ipezbo_brand_delete:
+    pattern:  /delete/{id}
+    defaults: { _controller: ipezboBrandBundle:Brand:delete }
+    requirements :
+        id : \d+

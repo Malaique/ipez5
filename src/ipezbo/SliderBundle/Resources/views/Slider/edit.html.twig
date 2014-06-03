@@ -1,13 +1,13 @@
 {% extends '::base.html.twig' %}
 {% block header %}Editer un slide{% endblock %}
 {% block body %}
-    <form method="post" {{ form_enctype(form) }}>
+<form method="post" {{ form_enctype(form) }} class="pure-form">
         {{ form_widget(form) }}
-        <input type="submit" class="btn btn-primary" />
-    </form>
+    <input type="submit" class="pure-button pure-button-primary" />
+</form>
 
-        
-        <img src="{{ asset(slider.ImagePath) }}"><br />
 
-     <a href="{{path('ipezbo_slider_homepage') }}">Retour aux slides</a>
+<img src="{{ asset(slider.ImagePath) }}"><br />
+
+<a href="{{path('ipezbo_slider_homepage') }}">Retour aux slides</a>
 {% endblock %}

@@ -6,19 +6,23 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use ipezbo\CategoryBundle\Entity\Category;
 use ipezbo\CategoryBundle\Form\CategoryType;
 
-class CategoryController extends Controller {
+class CategoryController extends Controller
+{
 
-    public function indexAction() {
+    public function indexAction()
+    {
 
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('ipezboCategoryBundle:Category');
 
         $categories = $repository->findAll();
 
-        return $this->render('ipezboCategoryBundle:Category:index.html.twig', array('categories' => $categories));
+        return $this->render('ipezboCategoryBundle:Category:index.html.twig', array(
+                    'categories' => $categories));
     }
 
-    public function addAction() {
+    public function addAction()
+    {
 
         $category = new Category();
 
@@ -42,7 +46,8 @@ class CategoryController extends Controller {
         );
     }
 
-    public function editAction(Category $category) {
+    public function editAction(Category $category)
+    {
         $form = $this->createForm(new CategoryType, $category);
 
         $request = $this->getRequest();
@@ -61,6 +66,18 @@ class CategoryController extends Controller {
                     'form' => $form->createView(),
                     'category' => $category
         ));
+    }
+
+    public function deleteAction(Category $category)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($category);
+        $em->flush();
+        $this->get('session')->getFlashBag()->add('info', 'La catégorie a bien été supprimé');
+
+
+        return $this->redirect($this->generateUrl('ipezbo_category_homepage'));
     }
 
 }

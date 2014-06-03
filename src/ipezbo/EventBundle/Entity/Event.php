@@ -3,12 +3,15 @@
 namespace ipezbo\EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Event
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="ipezbo\EventBundle\Entity\EventRepository")
+ * @UniqueEntity(fields="name", message="Un évènement existe déjà avec ce nom.")
  */
 class Event
 {
@@ -25,7 +28,11 @@ class Event
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=45)
+     * @ORM\Column(name="name", type="string", length=45, unique=true)
+     * @Assert\Length(
+     *      min = "2",
+     *      minMessage = "La nom doit avoir {{ limit }} caractères au minimum."
+     * )
      */
     private $name;
 
@@ -33,6 +40,10 @@ class Event
      * @var string
      *
      * @ORM\Column(name="description", type="text")
+     * @Assert\Length(
+     *      min = "10",
+     *      minMessage = "La description doit avoir {{ limit }} caractères au minimum."
+     * )
      */
     private $description;
 
@@ -40,6 +51,10 @@ class Event
      * @var string
      *
      * @ORM\Column(name="street", type="string", length=45)
+     * @Assert\Length(
+     *      min = "10",
+     *      minMessage = "La rue doit avoir {{ limit }} caractères au minimum."
+     * )
      */
     private $street;
 
@@ -47,6 +62,10 @@ class Event
      * @var string
      *
      * @ORM\Column(name="city", type="string", length=45)
+     * @Assert\Length(
+     *      min = "2",
+     *      minMessage = "La ville doit avoir {{ limit }} caractères au minimum."
+     * )
      */
     private $city;
 
@@ -54,6 +73,12 @@ class Event
      * @var string
      *
      * @ORM\Column(name="zipCode", type="string", length=5)
+     * @Assert\Length(
+     *      min = "3",
+     *      max = "5",
+     *      minMessage = "Le code postal doit avoir {{ limit }} caractères au minimum.",
+     *      maxMessage = "Le code postal doit avoir {{ limit }} caractères au maximum."
+     * )
      */
     private $zipCode;
 
@@ -67,14 +92,14 @@ class Event
     /**
      * @var string
      *
-     * @ORM\Column(name="coordinatesLatitude", type="decimal")
+     * @ORM\Column(name="coordinatesLatitude", type="decimal", scale=10)
      */
     private $coordinatesLatitude;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="coordinatesLongitude", type="decimal")
+     * @ORM\Column(name="coordinatesLongitude", type="decimal", scale=10)
      */
     private $coordinatesLongitude;
 
@@ -82,6 +107,7 @@ class Event
      * @var \DateTime
      *
      * @ORM\Column(name="startEvent", type="datetime")
+     * @Assert\DateTime()
      */
     private $startEvent;
 
@@ -89,6 +115,7 @@ class Event
      * @var \DateTime
      *
      * @ORM\Column(name="endEvent", type="datetime")
+     * @Assert\DateTime()
      */
     private $endEvent;
 
@@ -96,6 +123,11 @@ class Event
      * @var string
      *
      * @ORM\Column(name="backgroundColor", type="string", length=7)
+     * @Assert\Length(
+     *      min = "7",
+     *      max = "7",
+     *      exactMessage = "Le code hexa doit comporter {{ limit }} caractères"
+     * )
      */
     private $backgroundColor;
 
@@ -110,7 +142,6 @@ class Event
      *
      * @return integer 
      */
-
     public function getId()
     {
         return $this->id;
@@ -369,7 +400,6 @@ class Event
         return $this->backgroundColor;
     }
 
-
     /**
      * Set newsletter
      *
@@ -379,7 +409,7 @@ class Event
     public function setNewsletter(\ipezbo\NewsletterBundle\Entity\Newsletter $newsletter)
     {
         $this->newsletter = $newsletter;
-    
+
         return $this;
     }
 
@@ -392,4 +422,5 @@ class Event
     {
         return $this->newsletter;
     }
+
 }

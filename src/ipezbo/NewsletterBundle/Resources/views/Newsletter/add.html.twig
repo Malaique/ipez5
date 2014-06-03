@@ -1,11 +1,11 @@
 {% extends '::base.html.twig' %}
 {% block header %}Ajouter une newsletter{% endblock %}
 {% block body %}
-    <form method="post" {{ form_enctype(form) }}>
+<form method="post" {{ form_enctype(form) }} class="pure-form">
         {{ form_widget(form) }}
-        <input type="submit" class="btn btn-primary" />
-    </form>
+    <input type="submit" class="pure-button pure-button-primary" />
+</form>
 
 
-    <a href="{{path('ipezbo_newsletter_homepage') }}">Retour aux newsletters</a>
+<a href="{{path('ipezbo_newsletter_homepage') }}">Retour aux newsletters</a>
 {% endblock %}

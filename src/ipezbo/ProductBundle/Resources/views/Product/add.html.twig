@@ -1,10 +1,10 @@
 {% extends '::base.html.twig' %}
 {% block header %}Ajouter un produit{% endblock %}
 {% block body %}
-    <form method="post" {{ form_enctype(form) }}>
+<form method="post" {{ form_enctype(form) }} class="pure-form">
         {{ form_widget(form) }}
-        <input type="submit" class="btn btn-primary" />
-    </form>
+    <input type="submit" class="pure-button pure-button-primary" />
+</form>
 
 
     <a href="{{path('ipezbo_product_homepage') }}">Retour aux produits</a>

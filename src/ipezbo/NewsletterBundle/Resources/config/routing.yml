@@ -11,3 +11,9 @@ ipezbo_newsletter_edit:
     defaults: { _controller: ipezboNewsletterBundle:Newsletter:edit }
     requirements:
         id : \d+
+
+ipezbo_newsletter_delete:
+    pattern:  /delete/{id}
+    defaults: { _controller: ipezboNewsletterBundle:Newsletter:delete }
+    requirements :
+        id : \d+

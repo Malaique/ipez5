@@ -15,9 +15,18 @@ class NewsletterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('subject')
-            ->add('message')
-            ->add('expeditorEmail')
+            ->add('subject', 'text', array(
+                    'label' => 'Sujet',
+                    'attr' => array(
+                        'placeholder' => 'Sujet du mail',)))
+            ->add('message', 'textarea', array(
+                    'label' => 'Corps',
+                    'attr' => array(
+                        'placeholder' => 'Contenu du mail',)))
+            ->add('expeditorEmail', 'email', array(
+                    'label' => 'Expéditeur',
+                    'attr' => array(
+                        'placeholder' => 'Adresse email expéditeur',)))
         ;
     }
     

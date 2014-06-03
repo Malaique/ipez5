@@ -3,6 +3,8 @@
 namespace ipezbo\MailSettingBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * MailSetting
@@ -12,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class MailSetting
 {
+
     /**
      * @var integer
      *
@@ -25,6 +28,7 @@ class MailSetting
      * @var string
      *
      * @ORM\Column(name="transport", type="string", length=45)
+     * @Assert\NotBlank()
      */
     private $transport;
 
@@ -32,13 +36,15 @@ class MailSetting
      * @var string
      *
      * @ORM\Column(name="host", type="string", length=45)
+     * @Assert\NotBlank()
      */
     private $host;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="port", type="string", length=45)
+     * @ORM\Column(name="port", type="integer")
+     * @Assert\NotBlank()
      */
     private $port;
 
@@ -46,6 +52,7 @@ class MailSetting
      * @var string
      *
      * @ORM\Column(name="username", type="string", length=45)
+     * @Assert\NotBlank()
      */
     private $username;
 
@@ -53,6 +60,7 @@ class MailSetting
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=45)
+     * @Assert\NotBlank()
      */
     private $password;
 
@@ -60,9 +68,12 @@ class MailSetting
      * @var boolean
      *
      * @ORM\Column(name="usedMailSetting", type="boolean")
+     * @Assert\Email(
+     *     message = "'{{ value }}' n'est pas un email valide.",
+     *     checkMX = true
+     * )
      */
     private $usedMailSetting;
-
 
     /**
      * Get id
@@ -83,7 +94,7 @@ class MailSetting
     public function setTransport($transport)
     {
         $this->transport = $transport;
-    
+
         return $this;
     }
 
@@ -106,7 +117,7 @@ class MailSetting
     public function setHost($host)
     {
         $this->host = $host;
-    
+
         return $this;
     }
 
@@ -129,7 +140,7 @@ class MailSetting
     public function setPort($port)
     {
         $this->port = $port;
-    
+
         return $this;
     }
 
@@ -152,7 +163,7 @@ class MailSetting
     public function setUsername($username)
     {
         $this->username = $username;
-    
+
         return $this;
     }
 
@@ -175,7 +186,7 @@ class MailSetting
     public function setPassword($password)
     {
         $this->password = $password;
-    
+
         return $this;
     }
 
@@ -198,7 +209,7 @@ class MailSetting
     public function setUsedMailSetting($usedMailSetting)
     {
         $this->usedMailSetting = $usedMailSetting;
-    
+
         return $this;
     }
 
@@ -211,4 +222,5 @@ class MailSetting
     {
         return $this->usedMailSetting;
     }
+
 }

@@ -11,3 +11,9 @@ ipezbo_category_edit:
     defaults: { _controller: ipezboCategoryBundle:Category:edit }
     requirements:
         id : \d+
+
+ipezbo_category_delete:
+    pattern:  /delete/{id}
+    defaults: { _controller: ipezboCategoryBundle:Category:delete }
+    requirements :
+        id : \d+

@@ -1,11 +1,13 @@
 {% extends '::base.html.twig' %}
-{% block header %}Editer une marque une marque{% endblock %}
+{% block header %}Editer une marque{% endblock %}
 {% block body %}
-    <form method="post" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
-        <input type="submit" class="btn btn-primary" />
-    </form>
-    
-    
-    <a href="{{path('ipezbo_brand_homepage') }}">Retour aux marques</a>
+<form method="post" {{ form_enctype(form) }} class="pure-form">
+        {{ form_widget(form) }}
+    <input type="submit" class="pure-button pure-button-primary" />
+</form>
+
+
+<a href="{{path('ipezbo_brand_homepage') }}">Retour aux marques</a>
+
+<a href="{{ path('ipezbo_brand_delete', { id : brand.id}) }}" class="button-error pure-button" id="delete-action">Supprimer la marque {{ brand.name }}</a>
 {% endblock %}

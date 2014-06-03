@@ -15,8 +15,14 @@ class BrandType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('description')
+            ->add('name', 'text', array(
+                    'label' => 'Nom',
+                    'attr' => array(
+                        'placeholder' => 'Nom de la marque',)))
+            ->add('description', 'textarea', array(
+                    'label' => 'Description',
+                    'attr' => array(
+                        'placeholder' => 'Description de la marque',)))
         ;
     }
     

@@ -3,12 +3,15 @@
 namespace ipezbo\GeneralSettingBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * GeneralSetting
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="ipezbo\GeneralSettingBundle\Entity\GeneralSettingRepository")
+ * @UniqueEntity(fields="settingAttribute", message="Un paramètre existe déjà avec ce nom.")
  */
 class GeneralSetting
 {
@@ -24,7 +27,11 @@ class GeneralSetting
     /**
      * @var string
      *
-     * @ORM\Column(name="settingAttribute", type="string", length=45)
+     * @ORM\Column(name="settingAttribute", type="string", length=45, unique=true)
+     * @Assert\Length(
+     *      min = "2",
+     *      minMessage = "Le paramètre doit avoir {{ limit }} caractères au minimum."
+     * )
      */
     private $settingAttribute;
 

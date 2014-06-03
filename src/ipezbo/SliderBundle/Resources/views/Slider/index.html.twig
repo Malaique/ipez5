@@ -5,7 +5,7 @@
     {% for slider in sliders %}
         {{ slider.position }} // {{ slider.title }} <a href="{{ path('ipezbo_slider_edit', {id : slider.id}) }}">Editer</a><br />
         {% else %}
-            Pas d'évènements
+            Pas de slides
             {% endfor %}
                 <a href="{{path('ipezbo_slider_add') }}">Ajouter un slide</a>
                 {% endblock %}

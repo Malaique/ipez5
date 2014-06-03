@@ -1,14 +1,16 @@
 {% extends '::base.html.twig' %}
 {% block header %}Editer une catégorie{% endblock %}
 {% block body %}
-    <form method="post" {{ form_enctype(form) }}>
+<form method="post" {{ form_enctype(form) }} class="pure-form">
         {{ form_widget(form) }}
-        <input type="submit" class="btn btn-primary" />
-    </form>
+    <input type="submit" class="pure-button pure-button-primary" />
+</form>
 
 
-    <img src="{{ asset(category.ImagePath) }}">
+<img src="{{ asset(category.ImagePath) }}">
 
 
-    <a href="{{path('ipezbo_category_homepage') }}">Retour aux catégories</a>
+<a href="{{path('ipezbo_category_homepage') }}">Retour aux catégories</a>
+
+<a href="{{ path('ipezbo_category_delete', { id : category.id}) }}" class="button-error pure-button" id="delete-action">Supprimer la catégorie {{ category.name }}</a>
 {% endblock %}

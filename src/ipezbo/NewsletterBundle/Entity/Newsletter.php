@@ -3,6 +3,8 @@
 namespace ipezbo\NewsletterBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Newsletter
@@ -25,6 +27,10 @@ class Newsletter
      * @var string
      *
      * @ORM\Column(name="subject", type="string", length=45)
+     * @Assert\Length(
+     *      min = "5",
+     *      minMessage = "Le sujet doit avoir {{ limit }} caractères au minimum."
+     * )
      */
     private $subject;
 
@@ -32,6 +38,10 @@ class Newsletter
      * @var string
      *
      * @ORM\Column(name="message", type="text")
+     * @Assert\Length(
+     *      min = "10",
+     *      minMessage = "Le message doit avoir {{ limit }} caractères au minimum."
+     * )
      */
     private $message;
 
@@ -39,6 +49,10 @@ class Newsletter
      * @var string
      *
      * @ORM\Column(name="expeditorEmail", type="string", length=45)
+     * @Assert\Email(
+     *     message = "'{{ value }}' n'est pas un email valide.",
+     *     checkMX = true
+     * )
      */
     private $expeditorEmail;
 

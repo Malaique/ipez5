@@ -2,12 +2,10 @@
 
 {% trans_default_domain 'FOSUserBundle' %}
 
-{% block header %}
-    <div class="header">
-        <h1>Login</h1>
-        <h2>Formulaire d'authentification</h2>
-    </div>
-{% endblock %}
+{% block headertitle %}Login{% endblock %}
+{% block action %}Formulaire d'authentification{% endblock %}
+    
+
 
 {% block body %}
 {% if error %}

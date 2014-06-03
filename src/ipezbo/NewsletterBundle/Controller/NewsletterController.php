@@ -8,17 +8,21 @@ use ipezbo\NewsletterBundle\Form\NewsletterType;
 
 class NewsletterController extends Controller
 {
-    public function indexAction() {
+
+    public function indexAction()
+    {
 
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('ipezboNewsletterBundle:Newsletter');
 
         $newsletters = $repository->findAll();
 
-        return $this->render('ipezboNewsletterBundle:Newsletter:index.html.twig', array('newsletters' => $newsletters));
+        return $this->render('ipezboNewsletterBundle:Newsletter:index.html.twig', array(
+                    'newsletters' => $newsletters));
     }
 
-    public function addAction() {
+    public function addAction()
+    {
 
         $newsletter = new Newsletter();
 
@@ -42,7 +46,8 @@ class NewsletterController extends Controller
         );
     }
 
-    public function editAction(Newsletter $newsletter) {
+    public function editAction(Newsletter $newsletter)
+    {
         $form = $this->createForm(new NewsletterType, $newsletter);
 
         $request = $this->getRequest();
@@ -58,7 +63,21 @@ class NewsletterController extends Controller
             }
         }
         return $this->render('ipezboNewsletterBundle:Newsletter:edit.html.twig', array(
-                    'form' => $form->createView()
+                    'form' => $form->createView(),
+                    'newsletter' => $newsletter
         ));
     }
+
+    public function deleteAction(Newsletter $newsletter)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($newsletter);
+        $em->flush();
+        $this->get('session')->getFlashBag()->add('info', 'La newsletter a bien été supprimée');
+
+
+        return $this->redirect($this->generateUrl('ipezbo_newsletter_homepage'));
+    }
+
 }

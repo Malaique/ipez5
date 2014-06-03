@@ -13,7 +13,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="ipezbo\CategoryBundle\Entity\CategoryRepository")
  * @ORM\HasLifecycleCallbacks
- * @UniqueEntity("name")
+ * @UniqueEntity(fields="name", message="Une catégorie existe déjà avec ce nom.")
  */
 class Category {
 
@@ -30,13 +30,17 @@ class Category {
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=45, unique=true)
+     * @Assert\Length(
+     *      min = "2",
+     *      minMessage = "La nom doit avoir {{ limit }} caractères au minimum."
+     * )
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="image", type="string", length=45)
+     * @ORM\Column(name="image", type="string", length=45, nullable=false)
      */
     private $image;
     private $file;

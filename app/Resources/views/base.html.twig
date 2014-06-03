@@ -3,28 +3,34 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %} - IPEZ{% endblock %}</title>
-        {% stylesheets filter='cssrewrite'
-        'css/pure-min.css' %}
-            <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+        {% stylesheets filter='cssrewrite' 'css/*'%}
+        <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
-        {% stylesheets filter='cssrewrite'
-        'css/side-menu.css' %}
-            <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
-        {% endstylesheets %}
-        {% stylesheets filter='cssrewrite'
-        'css/main.css' %}
-            <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
-        {% endstylesheets %}
+
     </head>
     <body>
         <div id="layout">
             {% include "::menu.html.twig" %}
             <div id="main">
-                {% block header %}{% endblock %}
-                {% block body %}{% endblock %}
+                <div class="header">
+                    <h1>{% block header %}{% endblock %}</h1>
+                    <h2>{% block action %}{% endblock %}</h2>
+                </div>
+                <div class="content">{% block body %}{% endblock %}</div>
             </div>
-            {% include "::footer.html.twig" %}
+            {# {% include "::footer.html.twig" %} #}
         </div>
-        {% javascripts%}{% endjavascripts %}
-</body>
+
+
+        <div id="dialog-confirm" title="Confirmation de la suppression" style="display:none;">
+            <p>
+                <span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>
+                Etes-vous sûr de vouloir supprimer cet élément ?
+            </p>
+        </div>
+        <script src="{{ asset('js/jquery-1.10.2.min.js') }}"></script>
+        <script src="{{ asset('js/jquery-ui-1.10.4.min.js') }}"></script>
+        <script src="{{ asset('js/scripts.js') }}"></script>
+        {% block javascripts%}{% endblock %}
+    </body>
 </html>

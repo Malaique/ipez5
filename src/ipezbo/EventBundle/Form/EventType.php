@@ -6,13 +6,15 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class EventType extends AbstractType {
+class EventType extends AbstractType
+{
 
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options) {
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
 
         $order = "ASC";
         $builder
@@ -24,8 +26,14 @@ class EventType extends AbstractType {
                 ->add('additionalDetails')
                 ->add('coordinatesLatitude')
                 ->add('coordinatesLongitude')
-                ->add('startEvent', 'datetime')
-                ->add('endEvent', 'datetime')
+                ->add('startEvent', 'datetime', array(
+                    'years' => range(2014, date('Y')+5),
+                    'label' => 'Début de l\'évènement',
+                ))
+                ->add('endEvent', 'datetime', array(
+                    'years' => range(2014, date('Y')+5),
+                    'label' => 'Fin de l\'évènement',
+                ))
                 ->add('backgroundColor')
                 ->add('newsletter', 'entity', array(
                     'class' => 'ipezboNewsletterBundle:Newsletter',
@@ -42,7 +50,8 @@ class EventType extends AbstractType {
     /**
      * @param OptionsResolverInterface $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver) {
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
         $resolver->setDefaults(array(
             'data_class' => 'ipezbo\EventBundle\Entity\Event'
         ));
@@ -51,7 +60,8 @@ class EventType extends AbstractType {
     /**
      * @return string
      */
-    public function getName() {
+    public function getName()
+    {
         return 'ipezbo_eventbundle_event';
     }
 
