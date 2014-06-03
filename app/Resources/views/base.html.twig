@@ -5,16 +5,21 @@
         <title>{% block title %} - IPEZ{% endblock %}</title>
         {% stylesheets filter='cssrewrite'
         'css/pure-min.css' %}
-        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+            <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+        {% endstylesheets %}
+        {% stylesheets filter='cssrewrite'
+        'css/side-menu.css' %}
+            <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
         {% endstylesheets %}
     </head>
     <body>
-        {% include "::menu.html.twig" %}
         <div id="layout">
-            {% block body %}{% endblock %}
+            {% include "::menu.html.twig" %}
+            <div id="main">
+                {% block header %}{% endblock %}
+                {% block body %}{% endblock %}
+            </div>
         </div>
-</div>
-{% javascripts%}{% endjavascripts %}
-
+        {% javascripts%}{% endjavascripts %}
 </body>
 </html>
