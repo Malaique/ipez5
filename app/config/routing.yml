@@ -45,4 +45,3 @@ ipezbo_brand:
 ipezbo_customer:
     resource: "@ipezboCustomerBundle/Resources/config/routing.yml"
     prefix:   /customers
-
