@@ -1,5 +1,12 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+{% extends '::base.html.twig' %}
 
-{% block fos_user_content %}
-{% include "FOSUserBundle:Registration:register_content.html.twig" %}
-{% endblock fos_user_content %}
+{% block header %}
+    <div class="header">
+        <h1>Enregistrement</h1>
+        <h2>Ajout de nouveaux utilisateurs</h2>
+    </div>
+{% endblock header %}
+
+{% block body %}
+{% include "ipezboUserBundle:Registration:register_content.html.twig" %}
+{% endblock body %}
