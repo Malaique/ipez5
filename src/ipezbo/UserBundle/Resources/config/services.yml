@@ -6,4 +6,4 @@ services:
         class: ipezbo\UserBundle\Form\UserType
         arguments: [%fos_user.model.user.class%]
         tags:
-            - { name: form.type, alias: ipez_userbundle_user_registration }
+            - { name: form.type, alias: ipezbo_userbundle_user_registration }

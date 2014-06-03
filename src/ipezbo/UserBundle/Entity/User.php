@@ -12,8 +12,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="ipezbo\UserBundle\Entity\UserRepository")
  */
-class User extends BaseUser
-{
+class User extends BaseUser {
+
     /**
      * @var integer
      *
@@ -53,14 +53,12 @@ class User extends BaseUser
      */
     private $surname;
 
-
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -70,10 +68,9 @@ class User extends BaseUser
      * @param string $name
      * @return User
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
-    
+
         return $this;
     }
 
@@ -82,8 +79,7 @@ class User extends BaseUser
      *
      * @return string 
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -93,10 +89,9 @@ class User extends BaseUser
      * @param string $surname
      * @return User
      */
-    public function setSurname($surname)
-    {
+    public function setSurname($surname) {
         $this->surname = $surname;
-    
+
         return $this;
     }
 
@@ -105,8 +100,12 @@ class User extends BaseUser
      *
      * @return string 
      */
-    public function getSurname()
-    {
+    public function getSurname() {
         return $this->surname;
     }
+
+    public function getParent() {
+        return 'FOSUserBundle';
+    }
+
 }

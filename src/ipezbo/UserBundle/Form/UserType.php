@@ -2,11 +2,11 @@
 
 namespace ipezbo\UserBundle\Form;
 
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
 
-class UserType extends AbstractType
+class UserType extends BaseType
 {
 
     /**
@@ -17,25 +17,8 @@ class UserType extends AbstractType
     {
         $builder
                 ->add('name')
-                ->add('surname')
-                ->add('username')
-                ->add('usernameCanonical')
-                ->add('email')
-                ->add('emailCanonical')
-                ->add('enabled')
-                ->add('salt')
-                ->add('password')
-                ->add('lastLogin')
-                ->add('locked')
-                ->add('expired')
-                ->add('expiresAt')
-                ->add('confirmationToken')
-                ->add('passwordRequestedAt')
-                ->add('roles')
-                ->add('credentialsExpired')
-                ->add('credentialsExpireAt')
-
-        ;
+                ->add('surname');
+                 parent::buildForm($builder, $options);
     }
 
     /**
@@ -53,7 +36,7 @@ class UserType extends AbstractType
      */
     public function getName()
     {
-        return 'ipezbo_userbundle_user';
+        return 'ipezbo_userbundle_user_registration';
     }
 
 }
