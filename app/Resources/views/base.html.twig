@@ -2,12 +2,19 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <title>{% block title %} - IPEZ{% endblock %}</title>
+        {% stylesheets filter='cssrewrite'
+        'css/pure-min.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+        {% endstylesheets %}
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+        {% include "::menu.html.twig" %}
+        <div id="layout">
+            {% block body %}{% endblock %}
+        </div>
+</div>
+{% javascripts%}{% endjavascripts %}
+
+</body>
 </html>
