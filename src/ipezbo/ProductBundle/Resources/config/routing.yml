@@ -1,3 +1,13 @@
 ipezbo_product_homepage:
-    pattern:  /hello/{name}
+    pattern:  /
     defaults: { _controller: ipezboProductBundle:Product:index }
+
+ipezbo_product_add:
+    pattern:  /add
+    defaults: { _controller: ipezboProductBundle:Product:add }
+
+ipezbo_product_edit:
+    pattern:  /edit/{id}
+    defaults: { _controller: ipezboProductBundle:Product:edit }
+    requirements:
+        id : \d+

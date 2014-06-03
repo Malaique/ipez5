@@ -1,3 +1,13 @@
 ipezbo_event_homepage:
-    pattern:  /hello/{name}
+    pattern:  /
     defaults: { _controller: ipezboEventBundle:Event:index }
+
+ipezbo_event_add:
+    pattern:  /add
+    defaults: { _controller: ipezboEventBundle:Event:add }
+
+ipezbo_event_edit:
+    pattern:  /edit/{id}
+    defaults: { _controller: ipezboEventBundle:Event:edit }
+    requirements:
+        id : \d+

@@ -3,15 +3,17 @@
 namespace ipezbo\ProductBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Product
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="ipezbo\ProductBundle\Entity\ProductRepository")
+ * @ORM\HasLifecycleCallbacks
  */
-class Product
-{
+class Product {
 
     /**
      * @var integer
@@ -56,6 +58,8 @@ class Product
      * @ORM\Column(name="image", type="string", length=45)
      */
     private $image;
+    private $file;
+    private $tempFilename;
 
     /**
      * @ORM\ManyToOne(targetEntity="ipezbo\CategoryBundle\Entity\Category")
@@ -80,8 +84,7 @@ class Product
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -91,8 +94,7 @@ class Product
      * @param string $name
      * @return Product
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
 
         return $this;
@@ -103,8 +105,7 @@ class Product
      *
      * @return string 
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -114,8 +115,7 @@ class Product
      * @param string $reference
      * @return Product
      */
-    public function setReference($reference)
-    {
+    public function setReference($reference) {
         $this->reference = $reference;
 
         return $this;
@@ -126,8 +126,7 @@ class Product
      *
      * @return string 
      */
-    public function getReference()
-    {
+    public function getReference() {
         return $this->reference;
     }
 
@@ -137,8 +136,7 @@ class Product
      * @param string $description
      * @return Product
      */
-    public function setDescription($description)
-    {
+    public function setDescription($description) {
         $this->description = $description;
 
         return $this;
@@ -149,8 +147,7 @@ class Product
      *
      * @return string 
      */
-    public function getDescription()
-    {
+    public function getDescription() {
         return $this->description;
     }
 
@@ -160,8 +157,7 @@ class Product
      * @param integer $quantity
      * @return Product
      */
-    public function setQuantity($quantity)
-    {
+    public function setQuantity($quantity) {
         $this->quantity = $quantity;
 
         return $this;
@@ -172,8 +168,7 @@ class Product
      *
      * @return integer 
      */
-    public function getQuantity()
-    {
+    public function getQuantity() {
         return $this->quantity;
     }
 
@@ -183,8 +178,7 @@ class Product
      * @param string $image
      * @return Product
      */
-    public function setImage($image)
-    {
+    public function setImage($image) {
         $this->image = $image;
 
         return $this;
@@ -195,11 +189,9 @@ class Product
      *
      * @return string 
      */
-    public function getImage()
-    {
+    public function getImage() {
         return $this->image;
     }
-
 
     /**
      * Set category
@@ -207,10 +199,9 @@ class Product
      * @param \ipezbo\CategoryBundle\Entity\Category $category
      * @return Product
      */
-    public function setCategory(\ipezbo\CategoryBundle\Entity\Category $category)
-    {
+    public function setCategory(\ipezbo\CategoryBundle\Entity\Category $category) {
         $this->category = $category;
-    
+
         return $this;
     }
 
@@ -219,8 +210,7 @@ class Product
      *
      * @return \ipezbo\CategoryBundle\Entity\Category 
      */
-    public function getCategory()
-    {
+    public function getCategory() {
         return $this->category;
     }
 
@@ -230,10 +220,9 @@ class Product
      * @param \ipezbo\BrandBundle\Entity\Brand $brand
      * @return Product
      */
-    public function setBrand(\ipezbo\BrandBundle\Entity\Brand $brand)
-    {
+    public function setBrand(\ipezbo\BrandBundle\Entity\Brand $brand) {
         $this->brand = $brand;
-    
+
         return $this;
     }
 
@@ -242,8 +231,7 @@ class Product
      *
      * @return \ipezbo\BrandBundle\Entity\Brand 
      */
-    public function getBrand()
-    {
+    public function getBrand() {
         return $this->brand;
     }
 
@@ -253,10 +241,9 @@ class Product
      * @param \ipezbo\EventBundle\Entity\Event $event
      * @return Product
      */
-    public function setEvent(\ipezbo\EventBundle\Entity\Event $event)
-    {
+    public function setEvent(\ipezbo\EventBundle\Entity\Event $event) {
         $this->event = $event;
-    
+
         return $this;
     }
 
@@ -265,8 +252,81 @@ class Product
      *
      * @return \ipezbo\EventBundle\Entity\Event 
      */
-    public function getEvent()
-    {
+    public function getEvent() {
         return $this->event;
     }
+
+    public function setFile(UploadedFile $file) {
+        $this->file = $file;
+
+        if (null !== $this->image) {
+            $this->tempFilename = $this->image;
+            $this->image = null;
+        }
+    }
+
+    public function getFile() {
+        return $this->file;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload() {
+        if (null === $this->file) {
+            return;
+        }
+        $this->image = $this->file->getClientOriginalName();
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload() {
+        if (null === $this->file) {
+            return;
+        }
+
+        if (null !== $this->tempFilename) {
+            $oldFile = $this->getUploadRootDir() . '/' . $this->id . '.' . $this->tempFilename;
+            if (file_exists($oldFile)) {
+                unlink($oldFile);
+            }
+        }
+
+        $this->file->move(
+                $this->getUploadRootDir(), $this->id . '.' . $this->image
+        );
+    }
+
+    /**
+     * @ORM\PreRemove()
+     */
+    public function preRemoveUpload() {
+        $this->tempFilename = $this->getUploadRootDir() . '/' . $this->id . '.' . $this->image;
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload() {
+        if (file_exists($this->tempFilename)) {
+            unlink($this->tempFilename);
+        }
+    }
+
+    public function getUploadDir() {
+        return 'uploads/products/';
+    }
+
+    protected function getUploadRootDir() {
+        return __DIR__ . '/../../../../web/' . $this->getUploadDir();
+    }
+
+    public function getImagePath() {
+        return $this->getUploadDir() . '/' . $this->getId() . '.' . $this->getImage();
+    }
+
 }

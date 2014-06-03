@@ -1,3 +1,13 @@
 ipezbo_slider_homepage:
-    pattern:  /hello/{name}
+    pattern:  /
     defaults: { _controller: ipezboSliderBundle:Slider:index }
+
+ipezbo_slider_add:
+    pattern:  /add
+    defaults: { _controller: ipezboSliderBundle:Slider:add }
+
+ipezbo_slider_edit:
+    pattern:  /edit/{id}
+    defaults: { _controller: ipezboSliderBundle:Slider:edit }
+    requirements:
+        id : \d+

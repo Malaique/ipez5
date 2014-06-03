@@ -1,1 +1,12 @@
-Hello {{ name }}!
+{% extends '::base.html.twig' %}
+{% block header %}Liste des catégories{% endblock %}
+{% block body %}
+    {% for categorie in categories %}
+        {{ categorie.name }} <a href="{{ path('ipezbo_category_edit', {id : categorie.id}) }}">Editer</a><br />
+        {% else %}
+            Pas de catégories
+            {% endfor %}
+
+
+                <a href="{{path('ipezbo_category_add') }}">Ajouter une catégorie</a>
+                {% endblock %}

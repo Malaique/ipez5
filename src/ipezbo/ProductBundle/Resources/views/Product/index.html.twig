@@ -1,1 +1,11 @@
-Hello {{ name }}!
+{% extends '::base.html.twig' %}
+{% block header %}Liste des produits{% endblock %}
+
+{% block body %}
+    {% for product in products %}
+        {{ product.name }} <a href="{{ path('ipezbo_product_edit', {id : product.id}) }}">Editer</a><br />
+        {% else %}
+            Pas de produits
+            {% endfor %}
+                <a href="{{path('ipezbo_product_add') }}">Ajouter un produit</a>
+                {% endblock %}

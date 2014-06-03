@@ -1,1 +1,12 @@
-Hello {{ name }}!
+{% extends '::base.html.twig' %}
+{% block header %}Liste des newsletters{% endblock %}
+{% block body %}
+    {% for newsletter in newsletters %}
+        {{ newsletter.subject }} <a href="{{ path('ipezbo_newsletter_edit', {id : newsletter.id}) }}">Editer</a><br />
+        {% else %}
+            Pas de newsletters
+            {% endfor %}
+
+
+                <a href="{{path('ipezbo_newsletter_add') }}">Ajouter une newsletter</a>
+                {% endblock %}

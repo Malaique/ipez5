@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %}
+{% block header %}Editer un produit{% endblock %}
+{% block body %}
+    <form method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <input type="submit" class="btn btn-primary" />
+    </form>
+
+        
+        <img src="{{ asset(product.ImagePath) }}"><br />
+
+     <a href="{{path('ipezbo_product_homepage') }}">Retour aux produits</a>
+{% endblock %}

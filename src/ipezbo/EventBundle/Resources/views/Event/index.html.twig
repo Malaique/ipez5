@@ -1,1 +1,10 @@
-Hello {{ name }}!
+{% extends '::base.html.twig' %}
+{% block header %}Liste des évènements{% endblock %}
+{% block body %}
+    {% for event in events %}
+        {{ event.name }} <a href="{{ path('ipezbo_event_edit', {id : event.id}) }}">Editer</a><br />
+        {% else %}
+            Pas de slides
+            {% endfor %}
+                <a href="{{path('ipezbo_event_add') }}">Ajouter un évènement</a>
+                {% endblock %}

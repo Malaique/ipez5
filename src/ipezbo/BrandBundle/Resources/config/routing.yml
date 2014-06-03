@@ -1,3 +1,13 @@
 ipezbo_brand_homepage:
-    pattern:  /hello/{name}
+    pattern:  /
     defaults: { _controller: ipezboBrandBundle:Brand:index }
+
+ipezbo_brand_add:
+    pattern:  /add
+    defaults: { _controller: ipezboBrandBundle:Brand:add }
+
+ipezbo_brand_edit:
+    pattern:  /edit/{id}
+    defaults: { _controller: ipezboBrandBundle:Brand:edit }
+    requirements:
+        id : \d+

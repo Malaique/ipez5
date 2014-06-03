@@ -1,16 +1,22 @@
-    <div id="menu">
-        <div class="pure-menu pure-menu-open">
-            <a class="pure-menu-heading" href="#">Company</a>
+<div id="menu">
+    <div class="pure-menu pure-menu-open">
+        <a class="pure-menu-heading" href="#">IPEZ</a>
 
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-
-                <li class="menu-item-divided pure-menu-selected">
-                    <a href="#">Services</a>
-                </li>
-
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </div>
+        <ul>
+            <li>
+                <a href="{{path('ipezbo_brand_homepage') }}">Marques</a>
+            </li>
+            <li><a href="{{path('ipezbo_category_homepage') }}">Catégories</a></li>
+            <li><a href="{{path('ipezbo_newsletter_homepage') }}">Newsletters</a></li>
+            <li><a href="{{path('ipezbo_product_homepage') }}">Produits</a></li>
+            <li><a href="{{path('ipezbo_event_homepage') }}">Evenements</a></li>
+            <li><a href="{{path('ipezbo_slider_homepage') }}">Slider</a></li>
+            
+            
+            <li class="menu-item-divided ">
+                <a href="#">Paramètres</a>
+            </li>
+            <li><a href="{{path('ipezbo_slider_homepage') }}">Mails</a></li>
+        </ul>
     </div>
+</div>

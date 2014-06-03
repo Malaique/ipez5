@@ -95,7 +95,7 @@ class Event
     /**
      * @var string
      *
-     * @ORM\Column(name="backgroundColor", type="string", length=45)
+     * @ORM\Column(name="backgroundColor", type="string", length=7)
      */
     private $backgroundColor;
 

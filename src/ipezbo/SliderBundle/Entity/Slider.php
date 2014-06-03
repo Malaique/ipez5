@@ -3,15 +3,20 @@
 namespace ipezbo\SliderBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Slider
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="ipezbo\SliderBundle\Entity\SliderRepository")
+ * @ORM\HasLifecycleCallbacks
+ * @UniqueEntity("position")
  */
-class Slider
-{
+class Slider {
+
     /**
      * @var integer
      *
@@ -41,6 +46,8 @@ class Slider
      * @ORM\Column(name="image", type="string", length=45)
      */
     private $image;
+    private $file;
+    private $tempFilename;
 
     /**
      * @var boolean
@@ -52,7 +59,7 @@ class Slider
     /**
      * @var integer
      *
-     * @ORM\Column(name="position", type="integer")
+     * @ORM\Column(name="position", type="integer", unique=true)
      */
     private $position;
 
@@ -70,175 +77,165 @@ class Slider
      */
     private $target;
 
-
     /**
-     * Get id
+     * @var string
      *
-     * @return integer 
+     * @ORM\Column(name="backgroundColor", type="string", length=7)
      */
-    public function getId()
-    {
+    private $backgroundColor;
+
+    public function getId() {
         return $this->id;
     }
 
-    /**
-     * Set title
-     *
-     * @param string $title
-     * @return Slider
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string 
-     */
-    public function getTitle()
-    {
+    public function getTitle() {
         return $this->title;
     }
 
-    /**
-     * Set description
-     *
-     * @param string $description
-     * @return Slider
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-    
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string 
-     */
-    public function getDescription()
-    {
+    public function getDescription() {
         return $this->description;
     }
 
-    /**
-     * Set image
-     *
-     * @param string $image
-     * @return Slider
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-    
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return string 
-     */
-    public function getImage()
-    {
+    public function getImage() {
         return $this->image;
     }
 
-    /**
-     * Set isActive
-     *
-     * @param boolean $isActive
-     * @return Slider
-     */
-    public function setIsActive($isActive)
-    {
-        $this->isActive = $isActive;
-    
-        return $this;
-    }
-
-    /**
-     * Get isActive
-     *
-     * @return boolean 
-     */
-    public function getIsActive()
-    {
+    public function getIsActive() {
         return $this->isActive;
     }
 
-    /**
-     * Set position
-     *
-     * @param integer $position
-     * @return Slider
-     */
-    public function setPosition($position)
-    {
-        $this->position = $position;
-    
-        return $this;
-    }
-
-    /**
-     * Get position
-     *
-     * @return integer 
-     */
-    public function getPosition()
-    {
+    public function getPosition() {
         return $this->position;
     }
 
-    /**
-     * Set link
-     *
-     * @param string $link
-     * @return Slider
-     */
-    public function setLink($link)
-    {
-        $this->link = $link;
-    
-        return $this;
-    }
-
-    /**
-     * Get link
-     *
-     * @return string 
-     */
-    public function getLink()
-    {
+    public function getLink() {
         return $this->link;
     }
 
-    /**
-     * Set target
-     *
-     * @param boolean $target
-     * @return Slider
-     */
-    public function setTarget($target)
-    {
-        $this->target = $target;
-    
+    public function getTarget() {
+        return $this->target;
+    }
+
+    public function getBackgroundColor() {
+        return $this->backgroundColor;
+    }
+
+    public function setId($id) {
+        $this->id = $id;
         return $this;
     }
 
-    /**
-     * Get target
-     *
-     * @return boolean 
-     */
-    public function getTarget()
-    {
-        return $this->target;
+    public function setTitle($title) {
+        $this->title = $title;
+        return $this;
     }
+
+    public function setDescription($description) {
+        $this->description = $description;
+        return $this;
+    }
+
+    public function setImage($image) {
+        $this->image = $image;
+        return $this;
+    }
+
+    public function setIsActive($isActive) {
+        $this->isActive = $isActive;
+        return $this;
+    }
+
+    public function setPosition($position) {
+        $this->position = $position;
+        return $this;
+    }
+
+    public function setLink($link) {
+        $this->link = $link;
+        return $this;
+    }
+
+    public function setTarget($target) {
+        $this->target = $target;
+        return $this;
+    }
+
+    public function setBackgroundColor($backgroundColor) {
+        $this->backgroundColor = $backgroundColor;
+        return $this;
+    }
+
+    public function setFile(UploadedFile $file) {
+        $this->file = $file;
+
+        if (null !== $this->image) {
+            $this->tempFilename = $this->image;
+            $this->image = null;
+        }
+    }
+
+    public function getFile() {
+        return $this->file;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload() {
+        if (null === $this->file) {
+            return;
+        }
+        $this->image = $this->file->getClientOriginalName();
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload() {
+        if (null === $this->file) {
+            return;
+        }
+
+        if (null !== $this->tempFilename) {
+            $oldFile = $this->getUploadRootDir() . '/' . $this->id . '.' . $this->tempFilename;
+            if (file_exists($oldFile)) {
+                unlink($oldFile);
+            }
+        }
+
+        $this->file->move(
+                $this->getUploadRootDir(), $this->id . '.' . $this->image
+        );
+    }
+
+    /**
+     * @ORM\PreRemove()
+     */
+    public function preRemoveUpload() {
+        $this->tempFilename = $this->getUploadRootDir() . '/' . $this->id . '.' . $this->image;
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload() {
+        if (file_exists($this->tempFilename)) {
+            unlink($this->tempFilename);
+        }
+    }
+
+    public function getUploadDir() {
+        return 'uploads/slides/';
+    }
+
+    protected function getUploadRootDir() {
+        return __DIR__ . '/../../../../web/' . $this->getUploadDir();
+    }
+
+    public function getImagePath() {
+        return $this->getUploadDir() . '/' . $this->getId() . '.' . $this->getImage();
+    }
+
 }

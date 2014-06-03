@@ -1,1 +1,10 @@
-Hello {{ name }}!
+{% extends '::base.html.twig' %}
+{% block header %}Liste des marques{% endblock %}
+{% block body %}
+    {% for brand in brands %}
+        {{ brand.name }} <a href="{{ path('ipezbo_brand_edit', {id : brand.id}) }}">Editer</a><br />
+    {% endfor %}
+
+
+    <a href="{{path('ipezbo_brand_add') }}">Ajouter une marque</a>
+{% endblock %}

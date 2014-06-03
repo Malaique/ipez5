@@ -1,1 +1,11 @@
-Hello {{ name }}!
+{% extends '::base.html.twig' %}
+{% block header %}Liste des slides{% endblock %}
+
+{% block body %}
+    {% for slider in sliders %}
+        {{ slider.position }} // {{ slider.title }} <a href="{{ path('ipezbo_slider_edit', {id : slider.id}) }}">Editer</a><br />
+        {% else %}
+            Pas d'évènements
+            {% endfor %}
+                <a href="{{path('ipezbo_slider_add') }}">Ajouter un slide</a>
+                {% endblock %}

@@ -1,3 +1,13 @@
 ipezbo_newsletter_homepage:
-    pattern:  /hello/{name}
+    pattern:  /
     defaults: { _controller: ipezboNewsletterBundle:Newsletter:index }
+
+ipezbo_newsletter_add:
+    pattern:  /add
+    defaults: { _controller: ipezboNewsletterBundle:Newsletter:add }
+
+ipezbo_newsletter_edit:
+    pattern:  /edit/{id}
+    defaults: { _controller: ipezboNewsletterBundle:Newsletter:edit }
+    requirements:
+        id : \d+

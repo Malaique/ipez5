@@ -3,15 +3,20 @@
 namespace ipezbo\CategoryBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Category
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="ipezbo\CategoryBundle\Entity\CategoryRepository")
+ * @ORM\HasLifecycleCallbacks
+ * @UniqueEntity("name")
  */
-class Category
-{
+class Category {
+
     /**
      * @var integer
      *
@@ -24,7 +29,7 @@ class Category
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=45)
+     * @ORM\Column(name="name", type="string", length=45, unique=true)
      */
     private $name;
 
@@ -34,15 +39,15 @@ class Category
      * @ORM\Column(name="image", type="string", length=45)
      */
     private $image;
-
+    private $file;
+    private $tempFilename;
 
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -52,10 +57,9 @@ class Category
      * @param string $name
      * @return Category
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
-    
+
         return $this;
     }
 
@@ -64,8 +68,7 @@ class Category
      *
      * @return string 
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -75,10 +78,9 @@ class Category
      * @param string $image
      * @return Category
      */
-    public function setImage($image)
-    {
+    public function setImage($image) {
         $this->image = $image;
-    
+
         return $this;
     }
 
@@ -87,8 +89,81 @@ class Category
      *
      * @return string 
      */
-    public function getImage()
-    {
+    public function getImage() {
         return $this->image;
     }
+
+    public function setFile(UploadedFile $file) {
+        $this->file = $file;
+
+        if (null !== $this->image) {
+            $this->tempFilename = $this->image;
+            $this->image = null;
+        }
+    }
+
+    public function getFile() {
+        return $this->file;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload() {
+        if (null === $this->file) {
+            return;
+        }
+        $this->image = $this->file->getClientOriginalName();
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload() {
+        if (null === $this->file) {
+            return;
+        }
+
+        if (null !== $this->tempFilename) {
+            $oldFile = $this->getUploadRootDir() . '/' . $this->id . '.' . $this->tempFilename;
+            if (file_exists($oldFile)) {
+                unlink($oldFile);
+            }
+        }
+
+        $this->file->move(
+                $this->getUploadRootDir(), $this->id . '.' . $this->image
+        );
+    }
+
+    /**
+     * @ORM\PreRemove()
+     */
+    public function preRemoveUpload() {
+        $this->tempFilename = $this->getUploadRootDir() . '/' . $this->id . '.' . $this->image;
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload() {
+        if (file_exists($this->tempFilename)) {
+            unlink($this->tempFilename);
+        }
+    }
+
+    public function getUploadDir() {
+        return 'uploads/categories/';
+    }
+
+    protected function getUploadRootDir() {
+        return __DIR__ . '/../../../../web/' . $this->getUploadDir();
+    }
+
+    public function getImagePath() {
+        return $this->getUploadDir() . '/' . $this->getId() . '.' . $this->getImage();
+    }
+
 }

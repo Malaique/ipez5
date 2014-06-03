@@ -1,3 +1,13 @@
 ipezbo_category_homepage:
-    pattern:  /hello/{name}
+    pattern:  /
     defaults: { _controller: ipezboCategoryBundle:Category:index }
+
+ipezbo_category_add:
+    pattern:  /add
+    defaults: { _controller: ipezboCategoryBundle:Category:add }
+
+ipezbo_category_edit:
+    pattern:  /edit/{id}
+    defaults: { _controller: ipezboCategoryBundle:Category:edit }
+    requirements:
+        id : \d+

@@ -3,12 +3,14 @@
 namespace ipezbo\BrandBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Brand
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="ipezbo\BrandBundle\Entity\BrandRepository")
+ * @UniqueEntity("name")
  */
 class Brand
 {
@@ -24,7 +26,7 @@ class Brand
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=45)
+     * @ORM\Column(name="name", type="string", length=45, unique=true)
      */
     private $name;
 
