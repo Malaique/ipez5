@@ -12,3 +12,7 @@ and open the template in the editor.
     margin-left: 37%;
     margin-top: 5%;
 }
+
+.pure-control-group label.labelBlock{
+    display: block;
+}
