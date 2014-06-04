@@ -11,5 +11,5 @@
 
 <a href="{{path('ipezbo_product_homepage') }}">Retour aux produits</a>
 
-<a href="{{path('ipezbo_product_homepage') }}">Supprimer le produit</a>
+<a href="{{ path('ipezbo_product_delete', { id : product.id}) }}" class="button-error pure-button" id="delete-action">Supprimer le produit {{ product.name }}</a>
 {% endblock %}

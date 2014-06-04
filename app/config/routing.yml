@@ -1,3 +1,7 @@
+ipezbo_home:
+    resource: "@ipezboHomeBundle/Resources/config/routing.yml"
+    prefix:   /
+
 ipezbo_user:
     resource: "@ipezboUserBundle/Resources/config/routing.yml"
     prefix:   /

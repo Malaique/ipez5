@@ -62,5 +62,18 @@ class ProductController extends Controller {
                     'product' => $product
         ));
     }
+    
+    
+        public function deleteAction(Product $product)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($product);
+        $em->flush();
+        $this->get('session')->getFlashBag()->add('info', 'Le produit a bien été supprimée');
+
+
+        return $this->redirect($this->generateUrl('ipezbo_product_homepage'));
+    }
 
 }

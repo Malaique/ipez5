@@ -4,7 +4,9 @@ app/bootstrap*
 # Symfony directories
 */logs/*
 */cache/*
-web/uploads/*
+web/uploads/categories/*
+web/uploads/products/*
+web/uploads/slides/*
 web/bundles/*
 
 # Configuration files

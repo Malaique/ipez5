@@ -7,3 +7,9 @@ services:
         arguments: [%fos_user.model.user.class%]
         tags:
             - { name: form.type, alias: ipezbo_userbundle_user_registration }
+    
+    ipmotors_user.profile.form.type:
+        class: ipezbo\UserBundle\Form\UserProfile
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: ipezbo_userbundle_user_profile }

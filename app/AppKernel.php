@@ -29,6 +29,7 @@ class AppKernel extends Kernel
             new ipezbo\AlertBundle\ipezboAlertBundle(),
             new ipezbo\UserBundle\ipezboUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new ipezbo\HomeBundle\ipezboHomeBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

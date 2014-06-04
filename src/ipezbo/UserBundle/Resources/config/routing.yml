@@ -1,6 +1,37 @@
-ipezbo_user_homepage:
-    pattern:  /users
-    defaults: { _controller: ipezboUserBundle:User:index }
+ipezbo_user_list:
+    pattern: /users
+    defaults: { _controller: ipezboUserBundle:User:usersList }
+
+ipezbo_promote_admin:
+    pattern: /user/admin/{username}
+    defaults: { _controller: ipezboUserBundle:User:promoteAdmin }
+
+ipezbo_demote_admin:
+    pattern: /user/simple/{username}
+    defaults: { _controller: ipezboUserBundle:User:demoteAdmin }
+
+ipezbo_activate_user:
+    pattern: /user/activate/{username}
+    defaults: { _controller: ipezboUserBundle:User:activateUser }
+
+ipezbo_desactivate_user:
+    pattern: /user/desactivate/{username}
+    defaults: { _controller: ipezboUserBundle:User:desactivateUser }
+    
+    
+ipezbo_add_user:
+    pattern: /register/user/
+    defaults: { _controller: ipezboUserBundle:User:addUser }
+
+ipezbo_edit_user:
+    pattern: /user/edit/{id}
+    defaults: { _controller: ipezboUserBundle:User:editUser }
+
+ipezbo_user_delete:
+    pattern:  /user/delete/{id}
+    defaults: { _controller: ipezboUserBundle:User:delete }
+    requirements :
+        id : \d+
 
 fos_user_security:
    resource: "routing/security.xml"
