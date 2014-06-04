@@ -1,1 +1,9 @@
-Hello {{ name }}!
+{% extends '::base.html.twig' %}
+{% block header %}Liste des demandes de participation pour {{ event.name }}{% endblock %}
+{% block body %}
+    {% for participation in participations %}
+        {{ participation.customer.name }} {{ participation.customer.surname }} // {{ participation.event.name }} // {{ participation.requestTime }}<br />
+     {% else %}
+         Aucune demande de participation pour cet evenement
+    {% endfor %}
+{% endblock %}

@@ -1,3 +1,9 @@
 ipezbo_alert_homepage:
-    pattern:  /alert
+    pattern:  /
     defaults: { _controller: ipezboAlertBundle:Alert:index }
+
+ipezbo_alert_delete:
+    pattern:  /delete/{id}
+    defaults: { _controller: ipezboAlertBundle:Alert:delete }
+    requirements :
+        id : \d+

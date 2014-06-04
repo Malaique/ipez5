@@ -3,8 +3,6 @@
 namespace ipezbo\AlertBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use ipezbo\AlertBundle\Entity\Alert;
-use ipezbo\AlertBundle\Form\AlertType;
 
 class AlertController extends Controller {
 

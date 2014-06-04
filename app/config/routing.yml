@@ -1,6 +1,6 @@
 ipezbo_visitor_newsletter:
     resource: "@ipezboVisitorNewsletterBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /visitors-newsletters
 
 ipezbo_home:
     resource: "@ipezboHomeBundle/Resources/config/routing.yml"

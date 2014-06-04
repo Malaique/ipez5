@@ -1,3 +1,9 @@
 ipezbo_visitor_newsletter_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: ipezboVisitorNewsletterBundle:Default:index }
+    pattern:  /
+    defaults: { _controller: ipezboVisitorNewsletterBundle:VisitorNewsletter:index }
+
+ipezbo_visitor_newsletter_delete:
+    pattern:  /delete/{id}
+    defaults: { _controller: ipezboVisitorNewsletterBundle:VisitorNewsletter:delete }
+    requirements :
+        id : \d+

@@ -2,6 +2,8 @@
 {% block header %}Liste des alertes clientes{% endblock %}
 {% block body %}
     {% for alert in alerts %}
-        {{ alert.user.name }} <a href="{{ path('ipezbo_brand_edit', {id : alert.id}) }}">Editer</a><br />
+        {{ alert.id }} {{ alert.customer.name }} // {{ alert.brand.name }} // {{ alert.category.name }}<a href="{{ path('ipezbo_alert_delete', {id : alert.id}) }}" class="button-error pure-button" id="delete-action" >Supprimer</a><br />
+     {% else %}
+         Pas d'alertes clientes
     {% endfor %}
 {% endblock %}
