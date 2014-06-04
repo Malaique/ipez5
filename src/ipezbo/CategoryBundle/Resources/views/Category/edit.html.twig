@@ -1,16 +1,30 @@
 {% extends '::base.html.twig' %}
 {% block header %}Editer une catégorie{% endblock %}
 {% block body %}
-<form method="post" {{ form_enctype(form) }} class="pure-form">
-        {{ form_widget(form) }}
-    <input type="submit" class="pure-button pure-button-primary" />
-</form>
+<div class="pure-g">
+    <div class="pure-u-1-2 centrer">
+        <form class="pure-form pure-form-aligned" enctype="multipart/form-data" method="post">
+            <fieldset>
+                <div class="pure-control-group">
+                    <label class="required" for="ipezbo_categorybundle_category_name">Nom</label>
+                    {{ form_widget(form.name, { 'attr': {"class":"form-control"}} ) }}
+                </div>
+                <div class="pure-control-group">
+                    <label for="ipezbo_categorybundle_category_file">Image</label>
+                    {{ form_widget(form.file, { 'attr': {"class":"form-control"}} ) }}
+                </div>
+                
+                {{ form_widget(form) }}
+                <div class="pure-control-group">
+                    <input class="pure-button pure-button-primary" type="submit">
+                </div>
+            </fieldset>
+        </form>
+        <a class="pure-button" href="{{path('ipezbo_category_homepage') }}"> <- Retour aux catégories</a>
+        <a href="{{ path('ipezbo_category_delete', { id : category.id}) }}" class="button-error pure-button margeButton" id="delete-action">Supprimer la catégorie {{ category.name }}</a>
+    </div>
+</div>
 
 
 <img src="{{ asset(category.ImagePath) }}">
-
-
-<a href="{{path('ipezbo_category_homepage') }}">Retour aux catégories</a>
-
-<a href="{{ path('ipezbo_category_delete', { id : category.id}) }}" class="button-error pure-button" id="delete-action">Supprimer la catégorie {{ category.name }}</a>
 {% endblock %}

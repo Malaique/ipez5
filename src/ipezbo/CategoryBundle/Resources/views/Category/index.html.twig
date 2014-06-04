@@ -1,12 +1,25 @@
 {% extends '::base.html.twig' %}
 {% block header %}Liste des catégories{% endblock %}
 {% block body %}
-    {% for categorie in categories %}
-        {{ categorie.name }} <a href="{{ path('ipezbo_category_edit', {id : categorie.id}) }}">Editer</a><br />
-        {% else %}
-            Pas de catégories
-            {% endfor %}
-
-
-                <a href="{{path('ipezbo_category_add') }}">Ajouter une catégorie</a>
-                {% endblock %}
+             <table id="tableCategory" class="pure-table pure-table-bordered display">
+                <thead><tr><th>Nom</th><th>Image</th><th></th></tr></thead>
+                <tbody>
+                {% for categorie in categories %}
+                    <tr><td>{{ categorie.name }}</td><td>{{ categorie.image }}</td> <td><a href="{{ path('ipezbo_category_edit', {id : categorie.id}) }}">Editer</a></td></tr>
+                {% else %}
+                    Pas de catégories
+                {% endfor %}
+                </tbody>
+                <tfoot></tfoot>
+            </table>
+            <a class="pure-button margeButton" href="{{path('ipezbo_category_add') }}">Ajouter une catégorie</a>
+{% endblock %}
+    
+{% block javascripts %}
+    <script src="{{ asset('js/dataTable/media/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+        $('#tableCategory').dataTable();
+    });
+    </script>
+{% endblock %}    

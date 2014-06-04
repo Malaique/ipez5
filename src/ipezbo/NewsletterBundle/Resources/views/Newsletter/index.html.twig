@@ -1,12 +1,23 @@
 {% extends '::base.html.twig' %}
 {% block header %}Liste des newsletters{% endblock %}
 {% block body %}
-    {% for newsletter in newsletters %}
-        {{ newsletter.subject }} <a href="{{ path('ipezbo_newsletter_edit', {id : newsletter.id}) }}">Editer</a><br />
-        {% else %}
-            Pas de newsletters
-            {% endfor %}
+    <table id="tableNewsletter" class="pure-table pure-table-bordered display">
+        <thead><tr><th>Objet</th><th>Corps</th><th>Destinataire(s)</th><th></th></tr></thead>
+        <tbody>
+       {% for newsletter in newsletters %}
+           <tr><td>{{ newsletter.subject }}</td><td>{{ newsletter.message }}</td><td>{{ newsletter.expeditorEmail}}</td> <td><a href="{{ path('ipezbo_newsletter_edit', {id : newsletter.id}) }}">Editer</a></td></tr>
+       {% endfor %}
+       </tbody>
+       <tfoot></tfoot>
+   </table>
+   <a class="pure-button margeButton" href="{{path('ipezbo_newsletter_add') }}">Ajouter une newsletter</a>
+{% endblock %}
 
-
-                <a href="{{path('ipezbo_newsletter_add') }}">Ajouter une newsletter</a>
-                {% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/dataTable/media/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+        $('#tableNewsletter').dataTable();
+    });
+    </script>
+{% endblock %}      

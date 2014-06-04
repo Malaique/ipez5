@@ -3,7 +3,6 @@ $(function() {
 
     $("#dialog-confirm").dialog({
         resizable: false,
-        height: 160,
         width: 500,
         autoOpen: false,
         modal: true,

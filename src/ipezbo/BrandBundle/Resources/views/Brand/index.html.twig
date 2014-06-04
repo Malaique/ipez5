@@ -1,10 +1,25 @@
 {% extends '::base.html.twig' %}
 {% block header %}Liste des marques{% endblock %}
 {% block body %}
-    {% for brand in brands %}
-        {{ brand.name }} <a href="{{ path('ipezbo_brand_edit', {id : brand.id}) }}">Editer</a><br />
-    {% endfor %}
-
-
-    <a href="{{path('ipezbo_brand_add') }}">Ajouter une marque</a>
+    <table id="tableBrand" class="pure-table pure-table-bordered display">
+        <thead><tr><th>Nom</th><th>Description</th><th></th></tr></thead>
+        <tbody>
+        {% for brand in brands %}
+            <tr><td>{{ brand.name }}</td><td>{{ brand.description }} </td> <td><a class="pure-button" href="{{ path('ipezbo_brand_edit', {id : brand.id}) }}">Editer</a></td></tr>
+        {% else %}
+            Pas de marques
+        {% endfor %}
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <a class="pure-button margeButton" href="{{path('ipezbo_brand_add') }}">Ajouter une marque</a>
+{% endblock %}
+    
+{% block javascripts %}
+    <script src="{{ asset('js/dataTable/media/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+        $('#tableBrand').dataTable();
+    });
+    </script>
 {% endblock %}

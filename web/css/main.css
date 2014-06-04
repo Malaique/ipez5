@@ -16,3 +16,11 @@ and open the template in the editor.
 .pure-control-group label.labelBlock{
     display: block;
 }
+
+.button-error{
+    background-color: rgb(202, 60, 60);
+}
+
+.margeButton{
+    margin-top: 10px;
+}
