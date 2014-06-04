@@ -10,4 +10,5 @@
 <img src="{{ asset(slider.ImagePath) }}"><br />
 
 <a href="{{path('ipezbo_slider_homepage') }}">Retour aux slides</a>
+<a href="{{ path('ipezbo_slider_delete', { id : slider.id}) }}" class="button-error pure-button" id="delete-action">Supprimer la slide {{ slider.title }}</a>
 {% endblock %}

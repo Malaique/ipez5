@@ -84,4 +84,4 @@ fos_user:
             template: FOSUserBundle:Registration:email.txt.twig
     profile:
         form:
-            type: ipez_userbundle_user_profile
+            type: ipezbo_userbundle_user_profile

@@ -1,0 +1,3 @@
+ipezbo_home_homepage:
+    pattern:  /
+    defaults: { _controller: ipezboHomeBundle:Default:index }

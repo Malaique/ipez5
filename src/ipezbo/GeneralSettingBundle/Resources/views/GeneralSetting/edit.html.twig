@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %}
+{% block header %}Editer un paramètre général{% endblock %}
+{% block body %}
+<form method="post" {{ form_enctype(form) }} class="pure-form">
+        {{ form_widget(form) }}
+    <input type="submit" class="pure-button pure-button-primary" />
+</form>
+
+
+<a class="pure-button" href="{{path('ipezbo_general_setting_homepage') }}"><- Retour aux paramètres généraux</a>
+
+<a href="{{ path('ipezbo_general_setting_delete', { id : generalSetting.id}) }}" class="button-error pure-button" id="delete-action">Supprimer le paramètre {{ generalSetting.settingAttribute }}</a>
+{% endblock %}

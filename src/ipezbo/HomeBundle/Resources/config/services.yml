@@ -1,0 +1,7 @@
+parameters:
+#    ipezbo_home.example.class: ipezbo\HomeBundle\Example
+
+services:
+#    ipezbo_home.example:
+#        class: %ipezbo_home.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -33,6 +33,7 @@ class EventType extends AbstractType
                 ->add('endEvent', 'datetime', array(
                     'years' => range(2014, date('Y')+5),
                     'label' => 'Fin de l\'évènement',
+                    'attr' => array('class' => 'date-picker')
                 ))
                 ->add('backgroundColor')
                 ->add('newsletter', 'entity', array(

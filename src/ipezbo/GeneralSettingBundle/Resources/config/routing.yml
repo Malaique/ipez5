@@ -1,3 +1,19 @@
 ipezbo_general_setting_homepage:
-    pattern:  /hello/{name}
+    pattern:  /
     defaults: { _controller: ipezboGeneralSettingBundle:GeneralSetting:index }
+
+ipezbo_general_setting_add:
+    pattern:  /add
+    defaults: { _controller: ipezboGeneralSettingBundle:GeneralSetting:add }
+
+ipezbo_general_setting_edit:
+    pattern:  /edit/{id}
+    defaults: { _controller: ipezboGeneralSettingBundle:GeneralSetting:edit }
+    requirements:
+        id : \d+
+
+ipezbo_general_setting_delete:
+    pattern:  /delete/{id}
+    defaults: { _controller: ipezboGeneralSettingBundle:GeneralSetting:delete }
+    requirements :
+        id : \d+

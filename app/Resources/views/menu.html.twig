@@ -3,39 +3,37 @@
         <a class="pure-menu-heading" href="#">IPEZ</a>
 
         <ul>
-            <li>
-                <a href="{{path('ipezbo_brand_homepage') }}">Marques</a>
-            </li>
+            <li><a href="{{path('ipezbo_brand_homepage') }}">Marques</a></li>
             <li><a href="{{path('ipezbo_category_homepage') }}">Catégories</a></li>
-            <li><a href="{{path('ipezbo_newsletter_homepage') }}">Newsletters</a></li>
             <li><a href="{{path('ipezbo_product_homepage') }}">Produits</a></li>
+
+            <li class="menu-item-divided "></li>
             <li><a href="{{path('ipezbo_event_homepage') }}">Evenements</a></li>
+            <li><a href="{{path('ipezbo_newsletter_homepage') }}">Newsletters</a></li>
+
+            <li class="menu-item-divided "></li>
             <li><a href="{{path('ipezbo_slider_homepage') }}">Slider</a></li>
-            
-            
-            <li class="menu-item-divided ">
-                <a href="#">Paramètres</a>
-            </li>
-            <li><a href="{{path('ipezbo_slider_homepage') }}">Mails</a></li>
-            
-            
+
+            <li class="menu-item-divided "></li>
+            <li><a href="{{path('ipezbo_mail_setting_homepage') }}">Mails</a></li>
+
+            <li class="menu-item-divided "></li>
+                {% if is_granted('ROLE_ADMIN') %}
+                <li><a href="{{ path('ipezbo_user_list') }}">Gestion des utilisateurs</a></li>
+                <li><a href="{{ path('ipezbo_general_setting_homepage') }}">Paramètres</a></li>
+                {% endif %}
+
+            <li class="menu-item-divided "></li>
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ path('fos_user_profile_show') }}">Mon profil</a></li>
-                            {% if is_granted('ROLE_ADMIN') %}
-                            <li><a href="{{ path('ip_motors_users_list') }}">Gestion des utilisateurs</a></li>
-                             <li><a href="{{ path('ip_motors_mail_list') }}">Gestion des mailings</a></li>
-                            {% endif %}
-                            <li><a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }} <span class="glyphicon glyphicon-log-out"></span></a></li>
-                        </ul>
-                    </li>
+                <li><a href="{{ path('fos_user_profile_show') }}">Mon profil</a></li>
+                <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
                 {% else %}
-                    <li> <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }} <span class="glyphicon glyphicon-log-in"></span></a></li>
-                    {% endif %}
-            
-            
+                <li> <a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
+                {% endif %}
+
+
+
+
         </ul>
     </div>
 </div>

@@ -11,3 +11,9 @@ ipezbo_product_edit:
     defaults: { _controller: ipezboProductBundle:Product:edit }
     requirements:
         id : \d+
+
+ipezbo_product_delete:
+    pattern:  /delete/{id}
+    defaults: { _controller: ipezboProductBundle:Product:delete }
+    requirements :
+        id : \d+

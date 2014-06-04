@@ -63,4 +63,15 @@ class SliderController extends Controller {
         ));
     }
 
+    public function deleteAction(Slider $slider) {
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($slider);
+        $em->flush();
+        $this->get('session')->getFlashBag()->add('info', 'La slide a bien été supprimée');
+
+
+        return $this->redirect($this->generateUrl('ipezbo_slider_homepage'));
+    }
+
 }
