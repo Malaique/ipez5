@@ -4,11 +4,11 @@
         <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="pure-form pure-form-aligned">
             <fieldset>
                     <div class="pure-control-group">
-                        <label for="name">Nom</label>
+                        <label for="name">Nom</label><br>
                         {{ form_widget(form.name, { 'attr': {"class":"form-control"}} ) }}
                     </div>
                     <div class="pure-control-group">
-                        <label for="surname">Prénom</label>
+                        <label for="surname">Prénom</label><br>
                         {{ form_widget(form.surname, { 'attr': {"class":"form-control"}} ) }}
                     </div>
                     <div class="pure-control-group">
@@ -27,7 +27,7 @@
                         <label for="surname">Vérification</label>
                         {{ form_widget(form.plainPassword.second, { 'attr': {"class":"form-control"}} ) }}
                     </div>
-                    <div class="pure-controls">
+                    <div class="pure-control-group">
                           <input type="submit" class="pure-button pure-button-primary" value='{{ 'registration.submit'|trans }}'/>
                     </div>
                 </fieldset>
