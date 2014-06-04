@@ -2,14 +2,20 @@ parameters:
 #    ipezbo_user.example.class: ipezbo\UserBundle\Example
 
 services:
-    ipmotors_user.registration.form.type:
+    ipez_user.registration.form.type:
         class: ipezbo\UserBundle\Form\UserType
         arguments: [%fos_user.model.user.class%]
         tags:
             - { name: form.type, alias: ipezbo_userbundle_user_registration }
     
-    ipmotors_user.profile.form.type:
+    ipez_user.profile.form.type:
         class: ipezbo\UserBundle\Form\UserProfile
         arguments: [%fos_user.model.user.class%]
         tags:
             - { name: form.type, alias: ipezbo_userbundle_user_profile }
+
+    ipez_user.registration_complet:
+        class: ipezbo\UserBundle\EventListener\RegistrationConfirmListener
+        arguments: [@router]
+        tags:
+            - { name: kernel.event_subscriber }

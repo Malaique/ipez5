@@ -92,14 +92,14 @@ class Event
     /**
      * @var string
      *
-     * @ORM\Column(name="coordinatesLatitude", type="decimal", scale=10)
+     * @ORM\Column(name="coordinatesLatitude", type="text")
      */
     private $coordinatesLatitude;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="coordinatesLongitude", type="decimal", scale=10)
+     * @ORM\Column(name="coordinatesLongitude", type="text")
      */
     private $coordinatesLongitude;
 

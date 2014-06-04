@@ -1,1 +1,12 @@
-Hello {{ name }}!
+{% extends '::base.html.twig' %}
+{% block header %}Liste des paramètres généraux{% endblock %}
+{% block body %}
+    {% for generalSetting in generalSettings %}
+        {{ generalSetting.settingAttribute }} <a href="{{ path('ipezbo_general_setting_edit', {id : generalSetting.id}) }}">Editer</a><br />
+    {% else %}
+        Pas de paramètres généraux
+    {% endfor %}
+
+
+    <a href="{{path('ipezbo_general_setting_add') }}">Ajouter un paramètre</a>
+{% endblock %}

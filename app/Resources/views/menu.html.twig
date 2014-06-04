@@ -3,32 +3,35 @@
         <a class="pure-menu-heading" href="#">IPEZ</a>
 
         <ul>
-            <li>
-                <a href="{{path('ipezbo_brand_homepage') }}">Marques</a>
-            </li>
+            <li><a href="{{path('ipezbo_brand_homepage') }}">Marques</a></li>
             <li><a href="{{path('ipezbo_category_homepage') }}">Catégories</a></li>
-            <li><a href="{{path('ipezbo_newsletter_homepage') }}">Newsletters</a></li>
             <li><a href="{{path('ipezbo_product_homepage') }}">Produits</a></li>
+
+            <li class="menu-item-divided "></li>
             <li><a href="{{path('ipezbo_event_homepage') }}">Evenements</a></li>
+            <li><a href="{{path('ipezbo_newsletter_homepage') }}">Newsletters</a></li>
+
+            <li class="menu-item-divided "></li>
             <li><a href="{{path('ipezbo_slider_homepage') }}">Slider</a></li>
 
+            <li class="menu-item-divided "></li>
+            <li><a href="{{path('ipezbo_mail_setting_homepage') }}">Mails</a></li>
 
-            <li class="menu-item-divided ">
-                <a href="#">Paramètres</a>
-            </li>
-            <li><a href="{{path('ipezbo_slider_homepage') }}">Mails</a></li>
+            <li class="menu-item-divided "></li>
+                {% if is_granted('ROLE_ADMIN') %}
+                <li><a href="{{ path('ipezbo_user_list') }}">Gestion des utilisateurs</a></li>
+                <li><a href="{{ path('ipezbo_general_setting_homepage') }}">Paramètres</a></li>
+                {% endif %}
 
+            <li class="menu-item-divided "></li>
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 <li><a href="{{ path('fos_user_profile_show') }}">Mon profil</a></li>
                 <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
                 {% else %}
-                <li> <a href="{{ path('fos_user_registration_register') }}">Inscription</a></li>
                 <li> <a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
                 {% endif %}
 
-                {% if is_granted('ROLE_ADMIN') %}
-                <li><a href="{{ path('ipezbo_user_list') }}">Gestion des utilisateurs</a></li>
-                {% endif %}
+
 
 
         </ul>
