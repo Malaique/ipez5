@@ -11,3 +11,9 @@ ipezbo_slider_edit:
     defaults: { _controller: ipezboSliderBundle:Slider:edit }
     requirements:
         id : \d+
+        
+ipezbo_slider_delete:
+    pattern:  /delete/{id}
+    defaults: { _controller: ipezboSliderBundle:Slider:delete }
+    requirements :
+        id : \d+
