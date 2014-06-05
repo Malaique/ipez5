@@ -28,3 +28,7 @@ label .labelBlock{
 .margeButton{
     margin-top: 10px;
 }
+
+.ErrorForm{
+    color:red;
+}
