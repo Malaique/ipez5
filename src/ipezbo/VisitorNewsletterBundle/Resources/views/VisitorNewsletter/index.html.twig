@@ -1,9 +1,23 @@
 {% extends '::base.html.twig' %}
 {% block header %}Liste des alertes visiteurs{% endblock %}
 {% block body %}
+    <table id="tableAlertVisiteurs" class="pure-table pure-table-bordered">
+        <thead><th>Adresse</th><th>Nom Marque</th><th>Nom catégorie</th><th></th></thead>
+    <tbody>
     {% for visitorNewsletter in visitorsNewsletter %}
-        {{ visitorNewsletter.visitorNewsletterMail }} // {{ visitorNewsletter.brand.name }} // {{ visitorNewsletter.category.name }}<br />
-     {% else %}
-         Pas d'alertes visiteurs
+        <tr><td>{{ visitorNewsletter.visitorNewsletterMail }}</td><td>{{ visitorNewsletter.brand.name }}</td><td>{{ visitorNewsletter.category.name }}</td>
+        <td><a class="pure-button" href="{{ path('ipezbo_alert_delete', {id : alert.id}) }}" class="button-error pure-button" id="delete-action" >Supprimer</a></td></tr>
     {% endfor %}
+    </tbody>
+    <tfoot></tfoot>
+</table>
 {% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/dataTable/media/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+        $('#tableAlertVisiteurs').dataTable();
+    });
+    </script>
+{% endblock %} 
