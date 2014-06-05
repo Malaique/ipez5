@@ -102,7 +102,7 @@ class Event
      * @ORM\Column(name="coordinatesLongitude", type="text")
      */
     private $coordinatesLongitude;
-
+    
     /**
      * @var \DateTime
      *
@@ -282,7 +282,7 @@ class Event
      */
     public function getAdditionalDetails()
     {
-        return $this->additionalDetails;
+            return $this->additionalDetails;
     }
 
     /**
