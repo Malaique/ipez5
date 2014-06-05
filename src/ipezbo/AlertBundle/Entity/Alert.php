@@ -7,26 +7,42 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  */
-class Alert
-{
+class Alert {
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
      * @ORM\ManyToOne(targetEntity="ipezbo\CustomerBundle\Entity\Customer")
      */
     private $customer;
 
     /**
-     * @ORM\Id
      * @ORM\ManyToOne(targetEntity="ipezbo\BrandBundle\Entity\Brand")
      */
     private $brand;
 
     /**
-     * @ORM\Id
      * @ORM\ManyToOne(targetEntity="ipezbo\CategoryBundle\Entity\Category")
      */
     private $category;
+
+    
+    
+    public function getId() {
+        return $this->id;
+    }
+
+    public function setId($id) {
+        $this->id = $id;
+        return $this;
+    }
 
     /**
      * Set customer
@@ -34,8 +50,7 @@ class Alert
      * @param \ipezbo\CustomerBundle\Entity\Customer $customer
      * @return Alert
      */
-    public function setCustomer(\ipezbo\CustomerBundle\Entity\Customer $customer)
-    {
+    public function setCustomer(\ipezbo\CustomerBundle\Entity\Customer $customer) {
         $this->customer = $customer;
 
         return $this;
@@ -46,8 +61,7 @@ class Alert
      *
      * @return \ipezbo\CustomerBundle\Entity\Customer 
      */
-    public function getCustomer()
-    {
+    public function getCustomer() {
         return $this->customer;
     }
 
@@ -57,8 +71,7 @@ class Alert
      * @param \ipezbo\BrandBundle\Entity\Brand $brand
      * @return Alert
      */
-    public function setBrand(\ipezbo\BrandBundle\Entity\Brand $brand)
-    {
+    public function setBrand(\ipezbo\BrandBundle\Entity\Brand $brand) {
         $this->brand = $brand;
 
         return $this;
@@ -69,8 +82,7 @@ class Alert
      *
      * @return \ipezbo\BrandBundle\Entity\Brand 
      */
-    public function getBrand()
-    {
+    public function getBrand() {
         return $this->brand;
     }
 
@@ -80,8 +92,7 @@ class Alert
      * @param \ipezbo\CategoryBundle\Entity\Category $category
      * @return Alert
      */
-    public function setCategory(\ipezbo\CategoryBundle\Entity\Category $category)
-    {
+    public function setCategory(\ipezbo\CategoryBundle\Entity\Category $category) {
         $this->category = $category;
 
         return $this;
@@ -92,8 +103,7 @@ class Alert
      *
      * @return \ipezbo\CategoryBundle\Entity\Category 
      */
-    public function getCategory()
-    {
+    public function getCategory() {
         return $this->category;
     }
 

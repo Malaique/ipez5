@@ -3,11 +3,20 @@
 namespace ipezbo\ParticipationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use ipezbo\EventBundle\Entity\Event;
 
-class ParticipationController extends Controller
-{
-    public function indexAction($name)
-    {
-        return $this->render('ipezboParticipationBundle:Participation:index.html.twig', array('name' => $name));
+class ParticipationController extends Controller {
+
+    public function indexAction(Event $event) {
+
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('ipezboAlertBundle:Alert');
+
+        $participations = $repository->getParticipationByEvent($event->getId());
+
+        return $this->render('ipezboParticipationBundle:Participation:index.html.twig', array(
+                    'participations' => $participations,
+                    'event' => $event));
     }
+
 }
