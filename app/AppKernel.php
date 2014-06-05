@@ -31,6 +31,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new ipezbo\HomeBundle\ipezboHomeBundle(),
             new ipezbo\VisitorNewsletterBundle\ipezboVisitorNewsletterBundle(),
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
