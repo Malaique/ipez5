@@ -1,6 +1,18 @@
 {% extends '::base.html.twig' %}
 {% block header %}Ajouter un évènement{% endblock %}
 {% block body %}
+    <div class="ErrorForm">
+            {{ form_errors(form.name) }}
+            {{ form_errors(form.description) }}
+            {{ form_errors(form.street) }}
+            {{ form_errors(form.city) }}
+            {{ form_errors(form.zipCode) }}
+            {{ form_errors(form.additionalDetails) }}
+            {{ form_errors(form.coordinatesLatitude) }}
+            {{ form_errors(form.coordinatesLongitude) }}
+            {{ form_errors(form.backgroundColor) }}
+            {{ form_errors(form.newsletter) }}
+        </div>
 <form method="post" {{ form_enctype(form) }} class="pure-form">
      <fieldset>
         <legend>Legend</legend>
