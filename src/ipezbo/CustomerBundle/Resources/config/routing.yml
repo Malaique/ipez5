@@ -17,3 +17,9 @@ ipezbo_customer_delete:
     defaults: { _controller: ipezboCustomerBundle:Customer:delete }
     requirements :
         id : \d+
+
+ipezbo_customer_watch:
+    pattern:  /infos/{id}
+    defaults: { _controller: ipezboCustomerBundle:Customer:watch }
+    requirements:
+        id : \d+

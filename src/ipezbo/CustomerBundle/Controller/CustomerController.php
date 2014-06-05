@@ -43,27 +43,6 @@ class CustomerController extends Controller {
         );
     }
 
-    public function editAction(Customer $customer) {
-        $form = $this->createForm(new CustomerType, $customer);
-
-        $request = $this->getRequest();
-
-        if ($request->getMethod() == "POST") {
-            $form->bind($request);
-
-            if ($form->isValid()) {
-                $em = $this->getDoctrine()->getManager();
-                $em->flush();
-                $this->get('session')->getFlashBag()->add('info', 'Le client a bien été modifié');
-                return $this->redirect($this->generateUrl('ipezbo_customer_homepage'));
-            }
-        }
-        return $this->render('ipezboCustomerBundle:Customer:edit.html.twig', array(
-                    'form' => $form->createView(),
-                    'customer' => $customer
-        ));
-    }
-
     public function deleteAction(Customer $customer) {
 
         $em = $this->getDoctrine()->getManager();
@@ -73,6 +52,14 @@ class CustomerController extends Controller {
 
 
         return $this->redirect($this->generateUrl('ipezbo_customer_homepage'));
+    }
+
+    public function watchAction(Customer $customer) {
+
+        return $this->render('ipezboCustomerBundle:Customer:watch.html.twig', array(
+                    'customer' => $customer
+                        )
+        );
     }
 
 }

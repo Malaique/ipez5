@@ -53,10 +53,8 @@ class ParticipationController extends Controller {
         if ($request->getMethod() == 'GET') {
             $handle = fopen('php://memory', 'r+');
             foreach ($participations as $participation) {
-                fputcsv($handle, array(
-                    'nom' => $participation['customer']['name'],
-                    'prenom' => $participation['customer']['surname'],
-                    'mail' => $participation['customer']['mail']));
+                $data = array($participation['customer']['name'],$participation['customer']['surname'],$participation['customer']['mail']);
+                fputcsv($handle, $data);
             }
 
 
