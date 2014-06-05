@@ -27,11 +27,11 @@ class EventType extends AbstractType
                 ->add('coordinatesLatitude')
                 ->add('coordinatesLongitude')
                 ->add('startEvent', 'datetime', array(
-                    'years' => range(2014, date('Y')+5),
+                    
                     'label' => 'Début de l\'évènement',
+                    'attr' => array('class' => 'date-picker')
                 ))
                 ->add('endEvent', 'datetime', array(
-                    'years' => range(2014, date('Y')+5),
                     'label' => 'Fin de l\'évènement',
                     'attr' => array('class' => 'date-picker')
                 ))

@@ -15,7 +15,7 @@ class EventRepository extends EntityRepository {
     public function getEventByOrder($order) {
         $qb = $this->createQueryBuilder('e')
                 ->orderBy('e.name', $order);
-
+        
         return $qb;
     }
 

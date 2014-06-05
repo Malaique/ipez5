@@ -5,7 +5,7 @@
         <thead><tr><th>Objet</th><th>Corps</th><th>Destinataire(s)</th><th></th></tr></thead>
         <tbody>
        {% for newsletter in newsletters %}
-           <tr><td>{{ newsletter.subject }}</td><td>{{ newsletter.message }}</td><td>{{ newsletter.expeditorEmail}}</td> <td><a href="{{ path('ipezbo_newsletter_edit', {id : newsletter.id}) }}">Editer</a></td></tr>
+           <tr><td>{{ newsletter.subject }}</td><td>{{ newsletter.message }}</td><td>{{ newsletter.expeditorEmail}}</td> <td><a class="pure-button" href="{{ path('ipezbo_newsletter_edit', {id : newsletter.id}) }}">Editer</a></td></tr>
        {% endfor %}
        </tbody>
        <tfoot></tfoot>

@@ -1,11 +1,89 @@
 {% extends '::base.html.twig' %}
 {% block header %}Editer un évènement{% endblock %}
 {% block body %}
-<form method="post" {{ form_enctype(form) }} class="pure-form">
-        {{ form_widget(form) }}
-    <input type="submit" class="pure-button pure-button-primary" />
+
+     
+     
+     <div class="ErrorForm">
+            {{ form_errors(form.name) }}
+            {{ form_errors(form.description) }}
+            {{ form_errors(form.street) }}
+            {{ form_errors(form.city) }}
+            {{ form_errors(form.zipCode) }}
+            {{ form_errors(form.additionalDetails) }}
+            {{ form_errors(form.coordinatesLatitude) }}
+            {{ form_errors(form.coordinatesLongitude) }}
+            {{ form_errors(form.backgroundColor) }}
+            {{ form_errors(form.newsletter) }}
+        </div>
+<form method="post" {{ form_enctype(form) }} class="pure-form pure-form-aligned">
+     <fieldset>
+            <div class="pure-control-group">
+               <label class="required labelBlock" for="ipezbo_eventbundle_event_name">Name</label>
+               {{ form_widget(form.name, { 'attr': {"class":"form-control"}} ) }}
+           </div>
+
+           <div class="pure-control-group">
+               <label class="required labelBlock" for="ipezbo_eventbundle_event_description">Description</label>
+                {{ form_widget(form.description, { 'attr': {"class":"form-control"}} ) }}
+           </div>
+
+            <div class="pure-control-group">
+               <label class="required labelBlock" for="ipezbo_eventbundle_event_street">Street</label>
+               {{ form_widget(form.street, { 'attr': {"class":"form-control"}} ) }}
+           </div>
+
+            <div class="pure-control-group">
+               <label class="required labelBlock" for="ipezbo_eventbundle_event_city">City</label>
+               {{ form_widget(form.city, { 'attr': {"class":"form-control"}} ) }}
+           </div>
+
+          <div class="pure-control-group">
+               <label class="required labelBlock" for="ipezbo_eventbundle_event_zipCode">Zip code</label>
+               {{ form_widget(form.zipCode, { 'attr': {"class":"form-control"}} ) }}
+           </div>
+
+           <div class="pure-control-group">
+               <label class="required labelBlock" for="ipezbo_eventbundle_event_additionalDetails">Additional details</label>
+               {{ form_widget(form.additionalDetails, { 'attr': {"class":"form-control"}} ) }}
+           </div>
+
+            <div class="pure-control-group">
+               <label class="required labelBlock" for="ipezbo_eventbundle_event_coordinatesLatitude">Coordinates latitude</label>
+               {{ form_widget(form.coordinatesLatitude, { 'attr': {"class":"form-control"}} ) }}
+           </div>
+
+           <div class="pure-control-group">
+               <label class="required labelBlock" for="ipezbo_eventbundle_event_coordinatesLongitude">Coordinates longitude</label>
+               {{ form_widget(form.coordinatesLongitude, { 'attr': {"class":"form-control"}} ) }}
+           </div>
+
+            <div class="pure-control-group">
+               <label class="required labelBlock">Début de l'évènement</label>
+               {{ form_widget(form.startEvent, { 'attr': {"class":"form-control"}} ) }}
+           </div>
+
+           <div class="pure-control-group">
+               <label class="required labelBlock">Fin de l'évènement</label>
+               {{ form_widget(form.endEvent, { 'attr': {"class":"form-control"}} ) }}
+           </div>
+
+            <div class="pure-control-group">
+               <label class="required labelBlock" for="ipezbo_eventbundle_event_backgroundColor">Background color</label>
+               {{ form_widget(form.backgroundColor, { 'attr': {"class":"form-control"}} ) }}
+           </div>
+
+           <div class="pure-control-group">
+               <label class="required labelBlock" for="ipezbo_eventbundle_event_newsletter">Newsletter</label>
+               {{ form_widget(form.newsletter, { 'attr': {"class":"form-control"}} ) }}
+           </div>
+       {{ form_widget(form) }}
+        <div class="pure-control-group">
+           <input type="submit" class="pure-button pure-button-primary" />
+        </div>
+     </fieldset>
 </form>
 
 
-     <a href="{{path('ipezbo_event_homepage') }}">Retour aux évènements</a>
+    <a class="pure-button" href="{{path('ipezbo_event_homepage') }}">Retour aux évènements</a>
 {% endblock %}
