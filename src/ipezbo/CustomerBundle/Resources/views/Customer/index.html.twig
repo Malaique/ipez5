@@ -5,14 +5,13 @@
         <thead><tr><th>Nom</th><th></th></tr></thead>
         <tbody>
         {% for customer in customers %}
-            <tr><td>{{ customer.name }}</td><td><a class="pure-button" href="{{ path('ipezbo_customer_edit', {id : customer.id}) }}">Editer</a></td></tr>
+            <tr><td>{{ customer.name }}</td></tr>
         {% else %}
             Pas de marques
         {% endfor %}
         </tbody>
         <tfoot></tfoot>
     </table>
-    <a class="pure-button margeButton" href="{{path('ipezbo_brand_add') }}">Ajouter un client</a>
 {% endblock %}
     
 {% block javascripts %}
