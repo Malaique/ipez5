@@ -17,10 +17,8 @@ class AlertController extends Controller {
         return $this->render('ipezboAlertBundle:Alert:index.html.twig', array(
                     'alerts' => $alerts));
     }
-    
-    
-        public function deleteAction(Alert $alert)
-    {
+
+    public function deleteAction(Alert $alert) {
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($alert);

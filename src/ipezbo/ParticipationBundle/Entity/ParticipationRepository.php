@@ -26,4 +26,20 @@ class ParticipationRepository extends EntityRepository {
         return $qb->getQuery()->getResult();
     }
 
+    public function getAcceptedParticipationByEvent($id) {
+
+        $qb = $this->createQueryBuilder('p')
+                ->leftJoin('p.customer', 'c')
+                ->addSelect('c')
+                ->leftJoin('p.event', 'e')
+                ->addSelect('e');
+        $qb->where('p.event = :id')
+                ->setParameter('id', $id);
+        $qb->andwhere('p.requestAccepted = :statut')
+                ->setParameter('statut', 1);
+
+
+        return $qb->getQuery()->getArrayResult();
+    }
+
 }

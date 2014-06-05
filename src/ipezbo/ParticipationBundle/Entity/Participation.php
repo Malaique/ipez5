@@ -8,17 +8,23 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="ipezbo\ParticipationBundle\Entity\ParticipationRepository")
  */
-class Participation
-{
+class Participation {
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
      * @ORM\ManyToOne(targetEntity="ipezbo\CustomerBundle\Entity\Customer")
      */
     private $customer;
 
     /**
-     * @ORM\Id
      * @ORM\ManyToOne(targetEntity="ipezbo\EventBundle\Entity\Event")
      */
     private $event;
@@ -58,6 +64,19 @@ class Participation
      */
     private $participationConfirmation;
 
+    /**
+     * @param int $id
+     */
+    public function setId($id) {
+        $this->id = $id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId() {
+        return $this->id;
+    }
 
     /**
      * Set requestMessage
@@ -65,10 +84,9 @@ class Participation
      * @param string $requestMessage
      * @return Participation
      */
-    public function setRequestMessage($requestMessage)
-    {
+    public function setRequestMessage($requestMessage) {
         $this->requestMessage = $requestMessage;
-    
+
         return $this;
     }
 
@@ -77,8 +95,7 @@ class Participation
      *
      * @return string 
      */
-    public function getRequestMessage()
-    {
+    public function getRequestMessage() {
         return $this->requestMessage;
     }
 
@@ -88,10 +105,9 @@ class Participation
      * @param \DateTime $requestParticipationDate
      * @return Participation
      */
-    public function setRequestParticipationDate($requestParticipationDate)
-    {
+    public function setRequestParticipationDate($requestParticipationDate) {
         $this->requestParticipationDate = $requestParticipationDate;
-    
+
         return $this;
     }
 
@@ -100,8 +116,7 @@ class Participation
      *
      * @return \DateTime 
      */
-    public function getRequestParticipationDate()
-    {
+    public function getRequestParticipationDate() {
         return $this->requestParticipationDate;
     }
 
@@ -111,10 +126,9 @@ class Participation
      * @param \DateTime $requestTime
      * @return Participation
      */
-    public function setRequestTime($requestTime)
-    {
+    public function setRequestTime($requestTime) {
         $this->requestTime = $requestTime;
-    
+
         return $this;
     }
 
@@ -123,8 +137,7 @@ class Participation
      *
      * @return \DateTime 
      */
-    public function getRequestTime()
-    {
+    public function getRequestTime() {
         return $this->requestTime;
     }
 
@@ -134,10 +147,9 @@ class Participation
      * @param boolean $requestAccepted
      * @return Participation
      */
-    public function setRequestAccepted($requestAccepted)
-    {
+    public function setRequestAccepted($requestAccepted) {
         $this->requestAccepted = $requestAccepted;
-    
+
         return $this;
     }
 
@@ -146,8 +158,7 @@ class Participation
      *
      * @return boolean 
      */
-    public function getRequestAccepted()
-    {
+    public function getRequestAccepted() {
         return $this->requestAccepted;
     }
 
@@ -157,10 +168,9 @@ class Participation
      * @param boolean $participationConfirmation
      * @return Participation
      */
-    public function setParticipationConfirmation($participationConfirmation)
-    {
+    public function setParticipationConfirmation($participationConfirmation) {
         $this->participationConfirmation = $participationConfirmation;
-    
+
         return $this;
     }
 
@@ -169,8 +179,7 @@ class Participation
      *
      * @return boolean 
      */
-    public function getParticipationConfirmation()
-    {
+    public function getParticipationConfirmation() {
         return $this->participationConfirmation;
     }
 
@@ -180,10 +189,9 @@ class Participation
      * @param \ipezbo\CustomerBundle\Entity\Customer $customer
      * @return Participation
      */
-    public function setCustomer(\ipezbo\CustomerBundle\Entity\Customer $customer)
-    {
+    public function setCustomer(\ipezbo\CustomerBundle\Entity\Customer $customer) {
         $this->customer = $customer;
-    
+
         return $this;
     }
 
@@ -192,8 +200,7 @@ class Participation
      *
      * @return \ipezbo\CustomerBundle\Entity\Customer 
      */
-    public function getCustomer()
-    {
+    public function getCustomer() {
         return $this->customer;
     }
 
@@ -203,10 +210,9 @@ class Participation
      * @param \ipezbo\EventBundle\Entity\Event $event
      * @return Participation
      */
-    public function setEvent(\ipezbo\EventBundle\Entity\Event $event)
-    {
+    public function setEvent(\ipezbo\EventBundle\Entity\Event $event) {
         $this->event = $event;
-    
+
         return $this;
     }
 
@@ -215,8 +221,8 @@ class Participation
      *
      * @return \ipezbo\EventBundle\Entity\Event 
      */
-    public function getEvent()
-    {
+    public function getEvent() {
         return $this->event;
     }
+
 }

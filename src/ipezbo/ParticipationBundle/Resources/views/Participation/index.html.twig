@@ -1,12 +1,38 @@
 {% extends '::base.html.twig' %}
 {% block header %}Liste des demandes de participation pour {{ event.name }}{% endblock %}
 {% block body %}
-    {% for participation in participations %}
-        {{ participation.customer.name }} {{ participation.customer.surname }} // {{ participation.event.name }} // {{ participation.requestTime }}<br />
-     {% else %}
-         Aucune demande de participation pour cet evenement
-    {% endfor %}
-        
-        
-        <a href="{{ path('ipezbo_event_homepage')}}">Retour vers la liste des évènements</a>
-{% endblock %}
+    <table class="pure-table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Date de la demande</th>
+                <th>Demande d'invitation pour le</th>
+            </tr>
+        </thead>
+        {% for participation in participations %}
+            <tr>
+                <td><a href="">{{ participation.customer.name }}</a></td>
+                <td>{{ participation.customer.surname }}</td>
+                <td>{{ participation.requestTime|date('Y-m-d h-m') }}</td>
+                <td>{{ participation.requestParticipationDate|date('Y-m-d h-m') }}</td>
+                <td>
+                    <strong>
+                        {% if participation.requestAccepted %}
+                            Admis<br /><a href="{{ path('ipezbo_participation_deactivate', { id : participation.id, event : participation.event.id} ) }}">Refuser</a>
+                        {% else %}
+                            Non admis<br /><a href="{{ path('ipezbo_participation_activate', { id : participation.id, event : participation.event.id} ) }}">Accepter</a>
+                        {%endif %}
+                    </strong>
+                </td>    
+            </tr>
+            {% else %}
+                Aucune demande de participation pour cet evenement
+                {% endfor %}
+                </table>    
+
+                <a href="{{ path('ipezbo_event_homepage')}}">Retour vers la liste des évènements</a>
+                 <a href="{{ path('ipezbo_participation_csv' , { id : event.id}) }}">Export</a>
+                
+                
+                {% endblock %}
