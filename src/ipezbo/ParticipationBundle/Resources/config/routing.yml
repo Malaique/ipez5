@@ -1,3 +1,5 @@
 ipezbo_participation_homepage:
-    pattern:  /hello/{name}
+    pattern:  /{id}
     defaults: { _controller: ipezboParticipationBundle:Participation:index }
+    requirements:
+        id : \d+

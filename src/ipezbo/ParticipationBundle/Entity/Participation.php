@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="ipezbo\ParticipationBundle\Entity\ParticipationRepository")
  */
 class Participation
 {

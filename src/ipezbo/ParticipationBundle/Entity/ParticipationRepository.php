@@ -19,7 +19,7 @@ class ParticipationRepository extends EntityRepository {
                 ->addSelect('c')
                 ->leftJoin('p.event', 'e')
                 ->addSelect('e');
-        $qb->where('p.event_id = :id')
+        $qb->where('p.event = :id')
                 ->setParameter('id', $id);
 
 

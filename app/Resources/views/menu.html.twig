@@ -3,6 +3,7 @@
         <a class="pure-menu-heading" href="#">IPEZ</a>
 
         <ul>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             <li><a href="{{path('ipezbo_brand_homepage') }}">Marques</a></li>
             <li><a href="{{path('ipezbo_category_homepage') }}">Catégories</a></li>
             <li><a href="{{path('ipezbo_product_homepage') }}">Produits</a></li>
@@ -19,12 +20,13 @@
 
             <li class="menu-item-divided "></li>
             <li><a href="{{path('ipezbo_slider_homepage') }}">Slider</a></li>
-
+            {% endif %}
             <li class="menu-item-divided "></li>
+            {% if is_granted('ROLE_ADMIN') %}
             <li><a href="{{path('ipezbo_mail_setting_homepage') }}">Paramètres mails</a></li>
 
             <li class="menu-item-divided "></li>
-                {% if is_granted('ROLE_ADMIN') %}
+                
                 <li><a href="{{ path('ipezbo_user_list') }}">Gestion des utilisateurs</a></li>
                 <li><a href="{{ path('ipezbo_general_setting_homepage') }}">Paramètres</a></li>
                 {% endif %}

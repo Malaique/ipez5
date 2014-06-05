@@ -13,7 +13,9 @@
                         <td>{{event.zipcode}}</td>
                         <td>{{event.additionalDetails}}</td>
                         <td>{{event.newsletter.subject}}</td>
-                        <td><a href="{{ path('ipezbo_event_edit', {id : event.id}) }}">Editer</a></td></tr>
+                        <td><a href="{{ path('ipezbo_event_edit', {id : event.id}) }}">Editer</a></td>
+                        <td><a href="{{ path('ipezbo_participation_homepage', {id : event.id}) }}">Liste des participants</a></td>
+                    </tr>
                 {% else %}
                     Pas d'évènements
                 {% endfor %}

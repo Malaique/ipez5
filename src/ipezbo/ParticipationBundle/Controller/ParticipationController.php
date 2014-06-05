@@ -9,8 +9,9 @@ class ParticipationController extends Controller {
 
     public function indexAction(Event $event) {
 
+
         $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository('ipezboAlertBundle:Alert');
+        $repository = $em->getRepository('ipezboParticipationBundle:Participation');
 
         $participations = $repository->getParticipationByEvent($event->getId());
 
