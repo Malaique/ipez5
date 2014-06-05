@@ -76,6 +76,24 @@ class Category {
         return $this->name;
     }
 
+    public function getParentCategory() {
+        return $this->parentCategory;
+    }
+
+    public function getTempFilename() {
+        return $this->tempFilename;
+    }
+
+    public function setParentCategory($parentCategory) {
+        $this->parentCategory = $parentCategory;
+        return $this;
+    }
+
+    public function setTempFilename($tempFilename) {
+        $this->tempFilename = $tempFilename;
+        return $this;
+    }
+
     /**
      * Set image
      *

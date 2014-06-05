@@ -3,9 +3,15 @@
 namespace ipezbo\AlertBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\UniqueConstraint;
 
 /**
  * @ORM\Entity
+ * @ORM\Table(
+ *      uniqueConstraints={
+ *          @ORM\UniqueConstraint(name="uniq_alert", columns={"customer_id", "brand_id", "category_id"})
+ *      }
+ * )
  */
 class Alert {
 

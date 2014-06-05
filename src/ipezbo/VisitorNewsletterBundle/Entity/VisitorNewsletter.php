@@ -6,12 +6,17 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
+ * @ORM\Table(
+ *      uniqueConstraints={
+ *          @ORM\UniqueConstraint(name="uniq_alertVisitor", columns={"visitorNewsletterMail", "brand_id", "category_id"})
+ *      }
+ * )
  */
 class VisitorNewsletter {
 
     /**
-     * @var integer
-     *
+     * @ORM\Id
+
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")

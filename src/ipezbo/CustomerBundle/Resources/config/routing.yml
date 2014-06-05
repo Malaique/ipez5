@@ -1,3 +1,19 @@
 ipezbo_customer_homepage:
-    pattern:  /hello/{name}
+    pattern:  /
     defaults: { _controller: ipezboCustomerBundle:Customer:index }
+
+ipezbo_customer_add:
+    pattern:  /add
+    defaults: { _controller: ipezboCustomerBundle:Customer:add }
+
+ipezbo_customer_edit:
+    pattern:  /edit/{id}
+    defaults: { _controller: ipezboCustomerBundle:Customer:edit }
+    requirements:
+        id : \d+
+
+ipezbo_customer_delete:
+    pattern:  /delete/{id}
+    defaults: { _controller: ipezboCustomerBundle:Customer:delete }
+    requirements :
+        id : \d+

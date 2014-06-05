@@ -1,12 +1,12 @@
 <?php
 
-namespace ipezbo\CategoryBundle\Form;
+namespace ipezbo\CustomerBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class CategoryType extends AbstractType
+class CustomerType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -16,9 +16,19 @@ class CategoryType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('file', 'file', array(
-                
-            ))
+            ->add('surname')
+            ->add('mail')
+            ->add('username')
+            ->add('password')
+            ->add('street')
+            ->add('city')
+            ->add('zipCode')
+            ->add('phone')
+            ->add('newsletter')
+            ->add('isActive')
+            ->add('registrationDate')
+            ->add('salt')
+            ->add('roles')
         ;
     }
     
@@ -28,7 +38,7 @@ class CategoryType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'ipezbo\CategoryBundle\Entity\Category'
+            'data_class' => 'ipezbo\CustomerBundle\Entity\Customer'
         ));
     }
 
@@ -37,6 +47,6 @@ class CategoryType extends AbstractType
      */
     public function getName()
     {
-        return 'ipezbo_categorybundle_category';
+        return 'ipezbo_customerbundle_customer';
     }
 }
