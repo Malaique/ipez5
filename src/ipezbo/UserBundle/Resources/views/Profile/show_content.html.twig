@@ -1,7 +1,3 @@
-{% extends '::base.html.twig' %}
-{% block header %}Mon profil{% endblock %}
-
-{% block body %}
 {% trans_default_domain 'FOSUserBundle' %}
 
 <div class="fos_user_user_show">
@@ -10,10 +6,9 @@
     <p>Username: {{ user.username }}</p>
     <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
 
-    <a href="{{ path('fos_user_change_password') }}">Modifier le mot de passe</a>
-    <a href="{{ path('fos_user_profile_edit') }}">Modifier le profil</a>
+    <a class="pure-button" href="{{ path('fos_user_change_password') }}">Modifier le mot de passe</a>
+    <a class="pure-button" href="{{ path('fos_user_profile_edit') }}">Modifier le profil</a>
 
 
 
 </div>
-    {%endblock %}
