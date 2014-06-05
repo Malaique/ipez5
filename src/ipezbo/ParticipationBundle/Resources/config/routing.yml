@@ -3,3 +3,24 @@ ipezbo_participation_homepage:
     defaults: { _controller: ipezboParticipationBundle:Participation:index }
     requirements:
         id : \d+
+
+ipezbo_participation_activate:
+    pattern: /participant/activate/{id}/{event}
+    defaults: { _controller: ipezboParticipationBundle:Participation:activateUser }
+    requirements:
+        id : \d+
+        event : \d+
+
+ipezbo_participation_deactivate:
+    pattern: /participant/desactivate/{id}/{event}
+    defaults: { _controller: ipezboParticipationBundle:Participation:desactivateUser }
+    requirements:
+        id : \d+
+        event : \d+
+
+
+ipezbo_participation_csv:
+    pattern: /export/{id}
+    defaults: { _controller: ipezboParticipationBundle:Participation:getListingParticipationEvent }
+    requirements:
+        id : \d+
