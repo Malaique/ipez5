@@ -17,6 +17,10 @@ and open the template in the editor.
     display: block;
 }
 
+label .labelBlock{
+    display: block;
+}
+
 .button-error{
     background-color: rgb(202, 60, 60);
 }
