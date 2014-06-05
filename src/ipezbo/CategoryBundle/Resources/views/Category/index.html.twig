@@ -6,8 +6,6 @@
                 <tbody>
                 {% for categorie in categories %}
                     <tr><td>{{ categorie.name }}</td><td>{{ categorie.image }}</td> <td><a class="pure-button" href="{{ path('ipezbo_category_edit', {id : categorie.id}) }}">Editer</a></td></tr>
-                {% else %}
-                    Pas de catégories
                 {% endfor %}
                 </tbody>
                 <tfoot></tfoot>
