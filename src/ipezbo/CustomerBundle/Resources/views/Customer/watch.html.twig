@@ -1,10 +1,11 @@
 {% extends '::base.html.twig' %}
 {% block header %}Consulation du profil client{% endblock %}
 {% block body %}
-{{ customer.name }}<br />
-{{ customer.surname }}<br />
-{{ customer.mail }}<br />
-{{ customer.street }}<br />
-
-<a class="pure-button" href="{{ path('ipezbo_customer_homepage') }}">Retour à la liste des clients</a>
+    <table class="pure-table">
+        <tr><td>Nom</td><td>{{ customer.name }}</td>
+        <tr><td>Prénom</td><td>{{ customer.surname }}</td>
+        <tr><td>Mail</td><td>{{ customer.mail }}</td>
+        <tr><td>Adresse</td><td>{{ customer.street }}</td>
+</table>
+<a class="pure-button margeButton" href="{{ path('ipezbo_customer_homepage') }}">Retour à la liste des clients</a>
 {% endblock %}
