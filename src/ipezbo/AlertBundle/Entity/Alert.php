@@ -10,25 +10,25 @@ use Doctrine\ORM\Mapping as ORM;
 class Alert {
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @ORM\Id
      * @ORM\ManyToOne(targetEntity="ipezbo\CustomerBundle\Entity\Customer")
      */
     private $customer;
 
     /**
-     * @ORM\Id
      * @ORM\ManyToOne(targetEntity="ipezbo\BrandBundle\Entity\Brand")
      */
     private $brand;
 
     /**
-     * @ORM\Id
      * @ORM\ManyToOne(targetEntity="ipezbo\CategoryBundle\Entity\Category")
      */
     private $category;
