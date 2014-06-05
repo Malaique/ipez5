@@ -5,7 +5,7 @@
                 <thead><tr><th>Nom</th><th>Image</th><th></th></tr></thead>
                 <tbody>
                 {% for categorie in categories %}
-                    <tr><td>{{ categorie.name }}</td><td>{{ categorie.image }}</td> <td><a href="{{ path('ipezbo_category_edit', {id : categorie.id}) }}">Editer</a></td></tr>
+                    <tr><td>{{ categorie.name }}</td><td>{{ categorie.image }}</td> <td><a class="pure-button" href="{{ path('ipezbo_category_edit', {id : categorie.id}) }}">Editer</a></td></tr>
                 {% else %}
                     Pas de catégories
                 {% endfor %}
