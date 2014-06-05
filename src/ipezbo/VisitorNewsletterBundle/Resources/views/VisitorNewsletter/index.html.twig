@@ -2,7 +2,7 @@
 {% block header %}Liste des alertes visiteurs{% endblock %}
 {% block body %}
     {% for visitorNewsletter in visitorsNewsletter %}
-        {{ visitorsNewsletter.visitorNewsletterMail }} // {{ visitorsNewsletter.brand.name }} // {{ visitorsNewsletter.category.name }}<a href="{{ path('ipezbo_visitor_newsletter_delete', {id : visitorsNewsletter.id}) }}" class="button-error pure-button" id="delete-action" >Supprimer</a><br />
+        {{ visitorNewsletter.visitorNewsletterMail }} // {{ visitorNewsletter.brand.name }} // {{ visitorNewsletter.category.name }}<br />
      {% else %}
          Pas d'alertes visiteurs
     {% endfor %}

@@ -10,6 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
 class VisitorNewsletter {
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -17,19 +20,16 @@ class VisitorNewsletter {
 
     /**
      * @var string
-     * @ORM\Id
      * @ORM\Column(name="visitorNewsletterMail", type="string", length=45)
      */
     private $visitorNewsletterMail;
 
     /**
-     * @ORM\Id
      * @ORM\ManyToOne(targetEntity="ipezbo\BrandBundle\Entity\Brand")
      */
     private $brand;
 
     /**
-     * @ORM\Id
      * @ORM\ManyToOne(targetEntity="ipezbo\CategoryBundle\Entity\Category")
      */
     private $category;
