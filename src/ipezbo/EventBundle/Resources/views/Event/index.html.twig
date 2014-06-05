@@ -3,7 +3,7 @@
 {% block body %}
             <table id="tableEvent" class="pure-table pure-table-bordered">
                 <thead><tr><th>Name</th><th>Description</th><th>Street</th><th>City</th><th>ZipCode</th><th>Autres détails</th>
-                        <th>Newsletter</th><th></th></tr></thead>
+                        <th>Newsletter</th><th></th><th></th></tr></thead>
                 <tbody>
                 {% for event in events %}
                     <tr><td>{{ event.name }}</td> 
@@ -13,16 +13,14 @@
                         <td>{{event.zipcode}}</td>
                         <td>{{event.additionalDetails}}</td>
                         <td>{{event.newsletter.subject}}</td>
-                        <td><a href="{{ path('ipezbo_event_edit', {id : event.id}) }}">Editer</a></td>
-                        <td><a href="{{ path('ipezbo_participation_homepage', {id : event.id}) }}">Liste des participants</a></td>
+                        <td><a class="pure-button" href="{{ path('ipezbo_event_edit', {id : event.id}) }}">Editer</a></td>
+                        <td><a class="pure-button" href="{{ path('ipezbo_participation_homepage', {id : event.id}) }}">Liste des participants</a></td>
                     </tr>
-                {% else %}
-                    Pas d'évènements
                 {% endfor %}
                 </tbody>
                 <tfoot></tfoot>
             </table>
-            <a href="{{path('ipezbo_event_add') }}">Ajouter un évènement</a>
+            <a class="pure-button" href="{{path('ipezbo_event_add') }}">Ajouter un évènement</a>
 {% endblock %}
     
 {% block javascripts %}

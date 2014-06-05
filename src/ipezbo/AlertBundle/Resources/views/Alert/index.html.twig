@@ -1,9 +1,23 @@
 {% extends '::base.html.twig' %}
 {% block header %}Liste des alertes clientes{% endblock %}
+
 {% block body %}
+    <table id="tableAlert" class="pure-table pure-table-bordered">
+        <thead><th>Nom du client</th><th>Nom Marque</th><th>Nom catégorie</th><th></th></thead>
+    <tbody>
     {% for alert in alerts %}
-        {{ alert.id }} {{ alert.customer.name }} // {{ alert.brand.name }} // {{ alert.category.name }}<a href="{{ path('ipezbo_alert_delete', {id : alert.id}) }}" class="button-error pure-button" id="delete-action" >Supprimer</a><br />
-     {% else %}
-         Pas d'alertes clientes
+        <tr><td>{{ alert.customer.name }}</td>  <td>{{ alert.brand.name }}</td> <td>{{ alert.category.name }}</td><td><a class="pure-button" href="{{ path('ipezbo_alert_delete', {id : alert.id}) }}" class="button-error pure-button" id="delete-action" >Supprimer</a></td></tr>
     {% endfor %}
+    </tbody>
+    <tfoot></tfoot>
+</table>
 {% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/dataTable/media/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+        $('#tableAlert').dataTable();
+    });
+    </script>
+{% endblock %} 

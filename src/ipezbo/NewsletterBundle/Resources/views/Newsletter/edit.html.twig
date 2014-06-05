@@ -26,8 +26,8 @@
                 <input class="pure-button pure-button-primary" type="submit">
             </div>
         </form>
-        <a href="{{path('ipezbo_newsletter_homepage') }}">Retour aux newsletters</a>
-        <a href="{{ path('ipezbo_newsletter_delete', { id : newsletter.id}) }}" class="button-error pure-button" id="delete-action">Supprimer la newsletter "{{ newsletter.subject }}"</a>
+        <a class="pure-button margeButton" href="{{path('ipezbo_newsletter_homepage') }}">Retour aux newsletters</a>
+        <a href="{{ path('ipezbo_newsletter_delete', { id : newsletter.id}) }}" class="button-error pure-button margeButton" id="delete-action">Supprimer la newsletter "{{ newsletter.subject }}"</a>
     </div>
 </div>
     

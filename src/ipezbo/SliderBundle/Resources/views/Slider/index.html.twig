@@ -2,10 +2,25 @@
 {% block header %}Liste des slides{% endblock %}
 
 {% block body %}
-    {% for slider in sliders %}
-        {{ slider.position }} // {{ slider.title }} <a href="{{ path('ipezbo_slider_edit', {id : slider.id}) }}">Editer</a><br />
-        {% else %}
-            Pas de slides
-            {% endfor %}
-                <a href="{{path('ipezbo_slider_add') }}">Ajouter un slide</a>
-                {% endblock %}
+    <table id="tableSlide" class="pure-table pure-table-bordered">
+        <thead><th>Position</th><th>Titre</th><th></th></thead>
+    <tbody>
+        {% for slider in sliders %}
+            <tr><td>{{ slider.position }}</td> <td>{{ slider.title }}</td> <td><a href="{{ path('ipezbo_slider_edit', {id : slider.id}) }}">Editer</a></td></tr>
+            {% else %}
+                Pas de slides
+                {% endfor %}
+                </tbody>
+                <tfoot></tfoot>
+            </table>
+            <a href="{{path('ipezbo_slider_add') }}">Ajouter un slide</a>
+            {% endblock %}
+
+                {% block javascripts %}
+                    <script src="{{ asset('js/dataTable/media/js/jquery.dataTables.min.js') }}"></script>
+                    <script type="text/javascript">
+                        $(document).ready(function() {
+                            $('#tableSlide').dataTable();
+                        });
+                    </script>
+                {% endblock %}  

@@ -1,15 +1,74 @@
 {% extends '::base.html.twig' %}
 {% block header %}Editer un produit{% endblock %}
 {% block body %}
-<form method="post" {{ form_enctype(form) }} class="pure-form">
-        {{ form_widget(form) }}
-    <input type="submit" class="pure-button pure-button-primary" />
-</form>
+        <div class="pure-g">
+        <div class="pure-u-1-2 centrer">
+            <div class="ErrorForm">
+                {{ form_errors(form.name) }}
+                {{ form_errors(form.reference) }}
+                {{ form_errors(form.description) }}
+                {{ form_errors(form.quantity) }}
+                {{ form_errors(form.file) }}
+                {{ form_errors(form.category) }}
+                {{ form_errors(form.brand) }}
+                {{ form_errors(form.event) }}
+            </div>
+            <form method="post" {{ form_enctype(form) }} class="pure-form">
+                <div class="pure-control-group">
+                    <label class="required labelBlock" for="ipezbo_productbundle_product_name">Name</label>
+                    {{ form_widget(form.name, { 'attr': {"class":"form-control"}} ) }}
+                </div>
+                
+                <div class="pure-control-group">
+                    <label class="required labelBlock" for="ipezbo_productbundle_product_reference">Reference</label>
+                    {{ form_widget(form.reference, { 'attr': {"class":"form-control"}} ) }}
+                </div>
+                
+                <div class="pure-control-group">
+                    <label class="required labelBlock" for="ipezbo_productbundle_product_description">Description</label>
+                    {{ form_widget(form.description, { 'attr': {"class":"form-control"}} ) }}
+                </div>
+                
+                <div class="pure-control-group">
+                    <label class="required labelBlock" for="ipezbo_productbundle_product_quantity">Quantity</label>
+                    {{ form_widget(form.quantity, { 'attr': {"class":"form-control"}} ) }}
+                </div>
+                
+                <div class="pure-control-group">
+                    <label class="required labelBlock" for="ipezbo_productbundle_product_file">File</label>
+                    {{ form_widget(form.file, { 'attr': {"class":"form-control"}} ) }}
+                </div>
+                
+                <div class="pure-control-group">
+                    <label class="required labelBlock" for="ipezbo_productbundle_product_category">Category</label>
+                    {{ form_widget(form.category, { 'attr': {"class":"form-control"}} ) }}
+                    <a class="pure-button" href="{{path('ipezbo_category_add') }}" target="_blank">Ajouter une catégorie</a> 
+                </div>
+                
+                <div class="pure-control-group">
+                    <label class="required labelBlock" for="ipezbo_productbundle_product_brand">Brand</label>
+                        {{ form_widget(form.brand, { 'attr': {"class":"form-control"}} ) }}
+                        <a class="pure-button" href="{{path('ipezbo_brand_add') }}" target="_blank">Ajouter une marque</a> 
+                    </div>
+                
+                <div class="pure-control-group">
+                    <label class="required labelBlock" for="ipezbo_productbundle_product_event">Event</label>
+                    {{ form_widget(form.event, { 'attr': {"class":"form-control"}} ) }}
+                    <a class="pure-button" href="{{path('ipezbo_event_add') }}" target="_blank">Ajouter un evenement</a> 
+                </div>
+                
+                {{ form_widget(form) }}
+                
+                <div class="pure-control-group">
+                    <input type="submit" class="pure-button pure-button-primary margeButton" />
+                </div>
+            </form>
+            <a class="pure-button margeButton" href="{{path('ipezbo_product_homepage') }}">Retour aux produits</a>
+            <a href="{{ path('ipezbo_product_delete', { id : product.id}) }}" class="button-error pure-button margeButton" id="delete-action">Supprimer le produit {{ product.name }}</a>
+        </div>
+    </div>
 
 
 <img src="{{ asset(product.ImagePath) }}"><br />
 
-<a href="{{path('ipezbo_product_homepage') }}">Retour aux produits</a>
-
-<a href="{{ path('ipezbo_product_delete', { id : product.id}) }}" class="button-error pure-button" id="delete-action">Supprimer le produit {{ product.name }}</a>
 {% endblock %}
