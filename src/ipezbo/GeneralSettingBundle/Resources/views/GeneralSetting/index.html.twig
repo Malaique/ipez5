@@ -1,12 +1,15 @@
 {% extends '::base.html.twig' %}
 {% block header %}Liste des paramètres généraux{% endblock %}
 {% block body %}
+    <table class="pure-table pure-table-bordered">
+        <thead><tr><th>Nom</th><th></th></tr></thead>
+        <tbody>
     {% for generalSetting in generalSettings %}
-        {{ generalSetting.settingAttribute }} <a href="{{ path('ipezbo_general_setting_edit', {id : generalSetting.id}) }}">Editer</a><br />
+        <tr><td>{{ generalSetting.settingAttribute }}</td> <td><a href="{{ path('ipezbo_general_setting_edit', {id : generalSetting.id}) }}">Editer</a></td></tr>
     {% else %}
         Pas de paramètres généraux
     {% endfor %}
-
-
-    <a href="{{path('ipezbo_general_setting_add') }}">Ajouter un paramètre</a>
+    </tbody>
+    </table>
+    <a class="pure-button margeButton" href="{{path('ipezbo_general_setting_add') }}">Ajouter un paramètre</a>
 {% endblock %}

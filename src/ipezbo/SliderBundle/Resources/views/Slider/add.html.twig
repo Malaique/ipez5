@@ -3,9 +3,9 @@
 {% block body %}
 <form method="post" {{ form_enctype(form) }} class="pure-form">
         {{ form_widget(form) }}
-    <input type="submit" class="pure-button pure-button-primary" />
+    <input type="submit" class="pure-button pure-button-primary margeButton" />
 </form>
 
 
-    <a href="{{path('ipezbo_slider_homepage') }}">Retour aux slides</a>
+    <a class="pure-button margeButton" href="{{path('ipezbo_slider_homepage') }}">Retour aux slides</a>
 {% endblock %}
