@@ -6,11 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use ipezbo\NewsletterBundle\Entity\Newsletter;
 use ipezbo\NewsletterBundle\Form\NewsletterType;
 
-class NewsletterController extends Controller
-{
+class NewsletterController extends Controller {
 
-    public function indexAction()
-    {
+    public function indexAction() {
 
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('ipezboNewsletterBundle:Newsletter');
@@ -21,8 +19,7 @@ class NewsletterController extends Controller
                     'newsletters' => $newsletters));
     }
 
-    public function addAction()
-    {
+    public function addAction() {
 
         $newsletter = new Newsletter();
 
@@ -46,8 +43,7 @@ class NewsletterController extends Controller
         );
     }
 
-    public function editAction(Newsletter $newsletter)
-    {
+    public function editAction(Newsletter $newsletter) {
         $form = $this->createForm(new NewsletterType, $newsletter);
 
         $request = $this->getRequest();
@@ -68,14 +64,31 @@ class NewsletterController extends Controller
         ));
     }
 
-    public function deleteAction(Newsletter $newsletter)
-    {
+    public function deleteAction(Newsletter $newsletter) {
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($newsletter);
         $em->flush();
         $this->get('session')->getFlashBag()->add('info', 'La newsletter a bien été supprimée');
 
+
+        return $this->redirect($this->generateUrl('ipezbo_newsletter_homepage'));
+    }
+
+    public function testAction(Newsletter $newsletter) {
+
+
+        $myMail = $this->container->get('security.context')->getToken()->getUser()->getEmail();
+
+        $message = \Swift_Message::newInstance()
+                ->setSubject($newsletter->getSubject())
+                ->setFrom($newsletter->getExpeditorEmail())
+                ->setTo($myMail)
+                ->setBody($newsletter->getMessage())
+        ;
+
+        $this->get('session')->getFlashBag()->add('info', 'Le mail test a bien été envoyé');
+        $this->get('mailer')->send($message);
 
         return $this->redirect($this->generateUrl('ipezbo_newsletter_homepage'));
     }
