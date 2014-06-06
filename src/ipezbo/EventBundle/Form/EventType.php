@@ -29,11 +29,17 @@ class EventType extends AbstractType
                 ->add('startEvent', 'datetime', array(
                     
                     'label' => 'Début de l\'évènement',
-                    'attr' => array('class' => 'date-picker')
+                    'attr' => array('class' => 'date-picker'),
+                    'years' => range(date('Y'), date('Y')+5),
+                    'months' => range(date('m'), date('m')+6),
+                    'days' => range(date('d'), date('d')+25)
                 ))
                 ->add('endEvent', 'datetime', array(
                     'label' => 'Fin de l\'évènement',
-                    'attr' => array('class' => 'date-picker')
+                    'attr' => array('class' => 'date-picker'),
+                    'years' => range(date('Y'), date('Y')+5),
+                    'months' => range(date('m'), date('m')+6),
+                    'days' => range(date('d')+1, date('d')+25)
                 ))
                 ->add('backgroundColor')
                 ->add('newsletter', 'entity', array(
