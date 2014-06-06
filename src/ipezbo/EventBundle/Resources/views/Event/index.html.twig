@@ -2,12 +2,11 @@
 {% block header %}Liste des évènements{% endblock %}
 {% block body %}
             <table id="tableEvent" class="pure-table pure-table-bordered">
-                <thead><tr><th>Name</th><th>Description</th><th>Street</th><th>City</th><th>ZipCode</th><th>Autres détails</th>
+                <thead><tr><th>Name</th><th>Street</th><th>City</th><th>ZipCode</th><th>Autres détails</th>
                         <th>Newsletter</th><th></th><th></th></tr></thead>
                 <tbody>
                 {% for event in events %}
                     <tr><td>{{ event.name }}</td> 
-                        <td>{{ event.description}} </td>
                         <td>{{ event.street }}</td>
                         <td>{{event.city}} </td>
                         <td>{{event.zipcode}}</td>

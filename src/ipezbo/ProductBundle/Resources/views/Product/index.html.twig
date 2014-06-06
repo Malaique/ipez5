@@ -3,14 +3,13 @@
 
 {% block body %}
                 <table id="tableProduct" class="pure-table pure-table-bordered">
-                <thead><th>Nom</th><th>Reference</th><th>Description</th><th>Quantité</th><th>Catégorie</th>
+                <thead><th>Nom</th><th>Reference</th><th>Quantité</th><th>Catégorie</th>
                 <th>Marque</th><th>Evenement</th><th></th></thead>
             <tbody>
                 {% for product in products %}
                     <tr>
                         <td>{{ product.name }}</td>
                         <td>{{ product.reference}}</td>
-                        <td>{{ product.description}}</td>
                         <td>{{ product.quantity}}</td>
                         <td>{{ product.category.name}}</td>
                         <td>{{ product.brand.name}}</td>

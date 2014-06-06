@@ -87,3 +87,29 @@
 
     <a class="pure-button" href="{{path('ipezbo_event_homepage') }}">Retour aux évènements</a>
 {% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/colorpicker/js/colorpicker.js') }}"></script>
+    <script src="{{ asset('js/colorpicker/js/eye.js') }}"></script>
+    <script src="{{ asset('js/colorpicker/js/layout.js') }}"></script>
+    <script src="{{ asset('js/colorpicker/js/utils.js') }}"></script>
+    
+    <script type="text/javascript">
+        $( document ).ready(function(){
+           
+           $('#ipezbo_eventbundle_event_backgroundColor').ColorPicker({
+               onSubmit: function(hsb, hex, rgb, el) {
+		$(el).val('#'+hex);
+		$(el).ColorPickerHide();
+	},
+	onBeforeShow: function () {
+		$(this).ColorPickerSetColor(this.value);
+	}
+})
+.bind('keyup', function(){
+	$(this).ColorPickerSetColor(this.value);
+});
+        });
+    </script>
+    
+{% endblock %}
