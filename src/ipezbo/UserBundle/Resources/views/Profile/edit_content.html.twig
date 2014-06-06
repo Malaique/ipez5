@@ -7,15 +7,15 @@
     <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="pure-form pure-form-aligned">
         <fieldset>
             <div class="pure-control-group">
-                <label class="required labelBlock" for="fos_user_profile_form_name">Name</label>
+                <label class="required labelBlock" for="fos_user_profile_form_name">Nom</label>
                 {{ form_widget(form.name, { 'attr': {"class":"form-control"}} ) }}
             </div>
             <div class="pure-control-group">
-                <label class="required labelBlock" for="fos_user_profile_form_surname">Name</label>
+                <label class="required labelBlock" for="fos_user_profile_form_surname">Prénom</label>
                 {{ form_widget(form.surname, { 'attr': {"class":"form-control"}} ) }}
             </div>
             <div class="pure-control-group">
-                <label class="required labelBlock" for="fos_user_profile_form_email">Name</label>
+                <label class="required labelBlock" for="fos_user_profile_form_email">Mail</label>
                 {{ form_widget(form.email, { 'attr': {"class":"form-control"}} ) }}
             </div>
         {{ form_widget(form) }}
