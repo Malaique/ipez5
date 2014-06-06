@@ -87,7 +87,7 @@ class NewsletterController extends Controller {
                 ->setBody($newsletter->getMessage())
         ;
 
-        $this->get('session')->getFlashBag()->add('info', 'Le mail test a bien été envoyé');
+        $this->get('session')->getFlashBag()->add('info', 'Le mail test a bien été envoyé à votre adresse ' . $myMail);
         $this->get('mailer')->send($message);
 
         return $this->redirect($this->generateUrl('ipezbo_newsletter_homepage'));

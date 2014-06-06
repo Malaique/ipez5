@@ -17,3 +17,9 @@ ipezbo_newsletter_delete:
     defaults: { _controller: ipezboNewsletterBundle:Newsletter:delete }
     requirements :
         id : \d+
+
+ipezbo_newsletter_test:
+    pattern:  /test/{id}
+    defaults: { _controller: ipezboNewsletterBundle:Newsletter:test }
+    requirements :
+        id : \d+
